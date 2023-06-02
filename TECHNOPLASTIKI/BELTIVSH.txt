@@ -1,0 +1,54 @@
+USE TECHNOPLASTIKI 
+SELECT TOP (1000) [SCAN]
+      ,[ATIM],SUBSTRING(SCAN,12,7) AS PAL
+     
+      ,[HME],PARTIDA,P.POSO
+  FROM [TECHNOPLASTIKI].[dbo].[PALETTIM] T
+  INNER JOIN PALETES P ON  SUBSTRING(SCAN,12,7)=P.PALET 
+
+
+SCAN	                ATIM	 PAL	HME	                 PARTIDA	POSO
+0052130111400009766	012645	0000976	2021-03-21 13:14:03.497	 1708206	880
+0052130111400009841	012645	0000984	2021-03-21 13:14:03.490	 1708206	880
+0052130111400010014	012645	0001001	2021-03-21 13:14:03.487	 1708206	880
+
+----------------------------------
+TO PARA PANO SE SOUMA ANA PARTIDA
+
+SELECT 
+      [ATIM],PARTIDA,SUM(P.POSO) AS SPOSO
+  FROM [TECHNOPLASTIKI].[dbo].[PALETTIM] T
+  INNER JOIN PALETES P ON  SUBSTRING(SCAN,12,7)=P.PALET 
+  GROUP BY ATIM,PARTIDA
+
+ATIM	PARTIDA  	SPOSO
+012645	 1708206	2640
+------------------------------------------
+
+
+
+
+
+
+
+
+
+USE TECHNOPLASTIKI 
+
+ΠΑΩ ΚΑΙ ΒΑΖΩ ΣΤΟ CH2 THS ΠΑΡΤΙΔΑΣ (PARTIDES) THN ΠΟΣOTHTA ΠOY ΣΚΑΝΑΡΙΣΑ 
+
+select * from PARTIDES WHERE YPOL>0 AND KOD='000012' ORDER BY CH2 DESC,HME DESC   //  FIFO
+select * from PARTIDES WHERE YPOL>0 AND KOD='000012' ORDER BY CH2 DESC,HME        // LIFO
+
+OPOTE KAI STIS 2 PERIPTOSEIS STON AFRO EMFANIZONTAI TA SKANARISMENA
+
+
+                           Else ' ΒΡΗΚΑ ΠΑΡΤΙΔΕΣ
+
+                                Dim POS2 As New DataTable
+                                Dim r2 As New ADODB.Recordset
+               ====>>>                 r2.Open("select sum(YPOL) FROM  PARTIDES WHERE RTRIM(LTRIM(KOD))='" + cEID + "'", GDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
+
+                                
+								 ΚΑΙ ΜΕΤΑ ΞΑΝΑΚΑΝΩ ΤΟ CH2=NULL  ΓΙΑ ΝΑ ΜΗΝ ΕΠΗΡΕΑΖΕΙ ΤΑ ΕΠΟΜΕΝΑ
+             
