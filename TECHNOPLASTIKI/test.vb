@@ -148,11 +148,15 @@ Public Class test
         Dim PEL As New DataTable
         Dim mRankPEL As String
 
+        ExecuteSQLQuery("UPDATE PEL SET ENERGOS=0 WHERE ENERGOS IS NULL")
+
+
+
         Dim TEST As Integer
         'SELECT EPO as [ΦΙΛΟΞΕΝΟΥΜΕΝΟΙ ΧΩΡΙΣ ΚΡΑΤΗΣΗ],CHECKIN,CHECKOUT FROM PEL P LEFT JOIN HOTROOMDAYS H ON P.ID=H.IDPEL WHERE IDROOM IS NULL
         ' ΦΟΡΤΩΝΩ ΤΟΥΣ ΠΕΛΑΤΕΣ
         Dim MDAY As String, dcin As Date, DCOUT As Date
-        ExecuteSQLQuery("select  convert(date,CHECKOUT) as CHECKOUTD,convert(date,CHECKIN) as CHECKIND,* from PEL  P LEFT JOIN HOTROOMDAYS H ON P.ID=H.IDPEL WHERE IDROOM IS NULL", PEL)
+        ExecuteSQLQuery("select  convert(date,CHECKOUT) as CHECKOUTD,convert(date,CHECKIN) as CHECKIND,* from PEL  P LEFT JOIN HOTROOMDAYS H ON P.ID=H.IDPEL WHERE IDROOM IS NULL AND ENERGOS<>1", PEL)
         ListBox1.Items.Add("ΑΠΕΤΥΧΑΝ ΝΑ ΚΑΝΟΥΝ ΚΡΑΡΗΣΗ:")
         Dim ISOK As Boolean = True
 
@@ -648,7 +652,7 @@ Public Class test
 
 
     Private Sub PAINTGRID1()
-        Dim Q As String = "SELECT EPO as [ΦΙΛΟΞΕΝΟΥΜΕΝΟΙ ΧΩΡΙΣ ΚΡΑΤΗΣΗ],CHECKIN,CHECKOUT FROM PEL P LEFT JOIN HOTROOMDAYS H ON P.ID=H.IDPEL WHERE IDROOM IS NULL" ' HOTELID=0 OR HOTELID IS NULL"
+        Dim Q As String = "SELECT EPO as [ΦΙΛΟΞΕΝΟΥΜΕΝΟΙ ΧΩΡΙΣ ΚΡΑΤΗΣΗ],CHECKIN,CHECKOUT FROM PEL P LEFT JOIN HOTROOMDAYS H ON P.ID=H.IDPEL WHERE IDROOM IS NULL AND ENERGOS<>1" ' HOTELID=0 OR HOTELID IS NULL"
         Dim SQLqry
         ' SQLqry = Label1.Text '"SELECT NAME,N1,ID FROM ERGATES " ' ORDER BY HME "
         Dim conn As SqlConnection = New SqlConnection(gConSQL)

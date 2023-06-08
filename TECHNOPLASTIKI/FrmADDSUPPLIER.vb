@@ -89,7 +89,6 @@ Public Class FrmAddSupplier
         If DTCheckin.Value > DTCheckout.Value Then
             MsgBox("ΗΜΕΡΟΜΗΝΊΑ CHECKOUT ΜΙΚΡΟΤΕΡΗ ΤΟΥ CHECKIN")
             Exit Sub
-
         End If
 
         If DTCheckin.Value < gHMEARX Or DTCheckin.Value > gHMETEL Then
@@ -105,18 +104,26 @@ Public Class FrmAddSupplier
 
         '  gHMETEL = DT2.Rows(0)("HMETEL")
 
+        Dim idsynodoy As String = "0"
+        Dim c3 As String = ""
+        If CheckBox1.Checked Then ' einai synodos (δηλαδη δεν ειναι ο κυριωσ προσκεκλημενοσ)
+            c3 = "1"
+        Else
+            c3 = "0"
+            'einai o kyrios proskeklhmenos kai exei synodo
+            If InStr(SYNODOS.Text, ";") > 0 Then
 
+                idsynodoy = SYNODOS.Text.Split(";")(1)
 
-
+                'ΕΝΗΜΕΡΩΝΩ ΤΟΝ ΥΙΟ ΜΕ ΤΟ ΙΔ ΤΟΥ ΠΑΤΕΡΑ ΤΟΥ
+                ExecuteSQLQuery("UPDATE PEL SET IDPATRIKO=" + Str(ID) + " where ID=" + idsynodoy)
+            End If
+        End If
 
         If IsNew Then
-
-            SQL = "insert into PEL (KINHTO,CH6,AIRPORT,CH5,RANK,SYNODOS,CH4,CH3,CHECKIN,CHECKOUT,AIRAFIXI,AIRANAX,EMAIL,EPO,ONO,DIE) VALUES ('" + KINHTO.Text + "','" + PTHSHANAXC6.Text + "','" + Airport.Text + "','" + PTHSHC5.Text + "'," + rank.Text + ",'" + Synodos.Text + "','" + cc4 + "','" + cc + "','" + ci + "','" + co + "','" + aaf + "','" + aan + "','" + email.Text + "','" + Replace(ONO.Text, "'", "`") + "','" + onoProsf.Text + "','" + mBaros + "')"
-
+            SQL = "insert into PEL (IDSYNODOY,ENERGOS,KINHTO,CH6,AIRPORT,CH5,RANK,SYNODOS,CH4,CH3,CHECKIN,CHECKOUT,AIRAFIXI,AIRANAX,EMAIL,EPO,ONO,DIE) VALUES (" + idsynodoy + "," + c3 + ",'" + KINHTO.Text + "','" + PTHSHANAXC6.Text + "','" + Airport.Text + "','" + PTHSHC5.Text + "'," + rank.Text + ",'" + SYNODOS.Text + "','" + cc4 + "','" + cc + "','" + ci + "','" + co + "','" + aaf + "','" + aan + "','" + email.Text + "','" + Replace(ONO.Text, "'", "`") + "','" + onoProsf.Text + "','" + mBaros + "')"
         Else
-            SQL = "UPDATE PEL SET AIRAFIXI='" + aaf + "',AIRANAX='" + aan + "',KINHTO='" + KINHTO.Text + "',CH6='" + PTHSHANAXC6.Text + "',AIRPORT='" + cAirport.Text + "',CH5='" + PTHSHC5.Text + "',RANK=" + rank.Text + ",SYNODOS='" + Synodos.Text + "',CH4='" + cc4 + "',CH3='" + cc + "',CHECKOUT='" + co + "',CHECKIN='" + ci + "',EMAIL='" + mkod + "',EPO='" + mono + "',ONO='" + m_mon + "',DIE='" + mBaros + "'  WHERE ID=" + Str(ID)
-
-
+            SQL = "UPDATE PEL SET IDSYNODOY=" + idsynodoy + ",ENERGOS=" + c3 + ",AIRAFIXI='" + aaf + "',AIRANAX='" + aan + "',KINHTO='" + KINHTO.Text + "',CH6='" + PTHSHANAXC6.Text + "',AIRPORT='" + cAirport.Text + "',CH5='" + PTHSHC5.Text + "',RANK=" + rank.Text + ",SYNODOS='" + SYNODOS.Text + "',CH4='" + cc4 + "',CH3='" + cc + "',CHECKOUT='" + co + "',CHECKIN='" + ci + "',EMAIL='" + mkod + "',EPO='" + mono + "',ONO='" + m_mon + "',DIE='" + mBaros + "'  WHERE ID=" + Str(ID)
         End If
 
 

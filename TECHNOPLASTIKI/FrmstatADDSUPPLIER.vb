@@ -506,6 +506,7 @@ Public Class Airport
             Dim mEmail As String = SQLDT4.Rows(k)("email").ToString()
             mEmail = mEmail + ";"
             Dim PROSF As String
+
             For ll As Integer = 0 To 10
                 If Len(Split(mEmail, ";")(ll)) > 0 Then
 
@@ -520,7 +521,7 @@ Public Class Airport
                     txtTo.Text = Split(mEmail, ";")(ll)
                     'End If
                 Else
-                Exit For
+                    Exit For
                 End If
             Next ll
 

@@ -22,61 +22,62 @@ Partial Class FrmAddSupplier
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAddSupplier))
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.KINHTO = New System.Windows.Forms.TextBox
-        Me.Label20 = New System.Windows.Forms.Label
-        Me.PTHSHANAXC6 = New System.Windows.Forms.TextBox
-        Me.Label19 = New System.Windows.Forms.Label
-        Me.PTHSHC5 = New System.Windows.Forms.TextBox
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.rank = New System.Windows.Forms.TextBox
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.Synodos = New System.Windows.Forms.TextBox
-        Me.mAttachment = New System.Windows.Forms.Label
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Subject = New System.Windows.Forms.TextBox
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.Panel1 = New System.Windows.Forms.Panel
-        Me.CH1 = New System.Windows.Forms.Label
-        Me.CH2 = New System.Windows.Forms.Label
-        Me.HotelRoom = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.HotelName = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.cAirport = New System.Windows.Forms.ComboBox
-        Me.cmdcancel = New System.Windows.Forms.Button
-        Me.cmdsave = New System.Windows.Forms.Button
-        Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox
-        Me.txtTo = New System.Windows.Forms.TextBox
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.txtMessage = New System.Windows.Forms.TextBox
-        Me.send = New System.Windows.Forms.Button
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.dtAirAnax = New System.Windows.Forms.DateTimePicker
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.DtAirAfixi = New System.Windows.Forms.DateTimePicker
-        Me.DTCheckout = New System.Windows.Forms.DateTimePicker
-        Me.DTCheckin = New System.Windows.Forms.DateTimePicker
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.DIE = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.onoProsf = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.ONO = New System.Windows.Forms.TextBox
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.email = New System.Windows.Forms.TextBox
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
-        Me.Button2 = New System.Windows.Forms.Button
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.KINHTO = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.PTHSHANAXC6 = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.PTHSHC5 = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.rank = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.mAttachment = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Subject = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CH1 = New System.Windows.Forms.Label()
+        Me.CH2 = New System.Windows.Forms.Label()
+        Me.HotelRoom = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.HotelName = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cAirport = New System.Windows.Forms.ComboBox()
+        Me.cmdcancel = New System.Windows.Forms.Button()
+        Me.cmdsave = New System.Windows.Forms.Button()
+        Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.txtTo = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtMessage = New System.Windows.Forms.TextBox()
+        Me.send = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.dtAirAnax = New System.Windows.Forms.DateTimePicker()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.DtAirAfixi = New System.Windows.Forms.DateTimePicker()
+        Me.DTCheckout = New System.Windows.Forms.DateTimePicker()
+        Me.DTCheckin = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.DIE = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.onoProsf = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ONO = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.email = New System.Windows.Forms.TextBox()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.SYNODOS = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -90,6 +91,8 @@ Partial Class FrmAddSupplier
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.SYNODOS)
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.Button2)
         Me.GroupBox1.Controls.Add(Me.KINHTO)
         Me.GroupBox1.Controls.Add(Me.Label20)
@@ -100,7 +103,6 @@ Partial Class FrmAddSupplier
         Me.GroupBox1.Controls.Add(Me.rank)
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.Synodos)
         Me.GroupBox1.Controls.Add(Me.mAttachment)
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -139,6 +141,15 @@ Partial Class FrmAddSupplier
         Me.GroupBox1.Size = New System.Drawing.Size(1090, 590)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(217, 441)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(79, 23)
+        Me.Button2.TabIndex = 142
+        Me.Button2.Text = "OutlookEmail"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'KINHTO
         '
@@ -216,17 +227,6 @@ Partial Class FrmAddSupplier
         Me.Label15.Size = New System.Drawing.Size(48, 13)
         Me.Label15.TabIndex = 133
         Me.Label15.Text = "Συνοδός"
-        '
-        'Synodos
-        '
-        Me.Synodos.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Synodos.CausesValidation = False
-        Me.Synodos.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Synodos.Location = New System.Drawing.Point(87, 122)
-        Me.Synodos.MaxLength = 50
-        Me.Synodos.Name = "Synodos"
-        Me.Synodos.Size = New System.Drawing.Size(325, 21)
-        Me.Synodos.TabIndex = 132
         '
         'mAttachment
         '
@@ -595,14 +595,25 @@ Partial Class FrmAddSupplier
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Button2
+        'CheckBox1
         '
-        Me.Button2.Location = New System.Drawing.Point(217, 441)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(79, 23)
-        Me.Button2.TabIndex = 142
-        Me.Button2.Text = "OutlookEmail"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(4, 243)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CheckBox1.Size = New System.Drawing.Size(97, 17)
+        Me.CheckBox1.TabIndex = 144
+        Me.CheckBox1.Text = "Είναι Συνοδός"
+        Me.CheckBox1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'SYNODOS
+        '
+        Me.SYNODOS.FormattingEnabled = True
+        Me.SYNODOS.Location = New System.Drawing.Point(86, 122)
+        Me.SYNODOS.Name = "SYNODOS"
+        Me.SYNODOS.Size = New System.Drawing.Size(325, 21)
+        Me.SYNODOS.TabIndex = 145
         '
         'FrmAddSupplier
         '
@@ -665,7 +676,6 @@ Partial Class FrmAddSupplier
     Friend WithEvents mAttachment As System.Windows.Forms.Label
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Synodos As System.Windows.Forms.TextBox
     Friend WithEvents CH1 As System.Windows.Forms.Label
     Friend WithEvents CH2 As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
@@ -677,4 +687,6 @@ Partial Class FrmAddSupplier
     Friend WithEvents KINHTO As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents SYNODOS As ComboBox
 End Class

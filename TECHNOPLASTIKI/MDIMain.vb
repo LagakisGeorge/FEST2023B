@@ -2237,9 +2237,14 @@ Public Class MDIMain
         Dim N As Integer = dd.Rows(0)(0)
         MsgBox("Προσκεκλημένοι " + Str(N))
 
-        dd = ExecuteSQLQuery("select count(*) from HOTROOMDAYS where IDPEL>0 ")
-        N = dd.Rows(0)(0)
-        MsgBox("Διανυκτερεύσεις " + Str(N))
+        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where IDPEL>0 GROUP BY HOTELNAME ")
+        Dim cal As String = ""
+        For lk As Integer = 0 To dd.Rows.Count - 1
+            cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + Chr(13)
+
+        Next
+        ' N = dd.Rows(0)(0)
+        MsgBox("Διανυκτερεύσεις " + Chr(13) + cal)
 
         Dim QQ As String = "SELECT CHECKIN,CHECKOUT, EPO,(DATEDIFF(DAY,CHECKIN,CHECKOUT) ) AS [ΑΙΤ.ΔΙΑΝ],(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) AS [ΠΡΑΓ.ΔΙΑΝ],ID,ISNULL(CH1,'            ') AS CH1,ISNULL(CH2,'            ') AS CH2 ,ID AS IDD  FROM PEL WHERE (DATEDIFF(DAY,CHECKIN,CHECKOUT) )<>(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) "
 
@@ -2763,11 +2768,12 @@ Public Class MDIMain
         Dim per = "Προσκεκλημένοι"
         Dim kod = "00"
 
-
+        ExecuteSQLQuery("UPDATE PEL SET IDPATRIKO=0 WHERE IDPATRIKO IS NULL")
+        ExecuteSQLQuery("UPDATE PEL SET IDSYNODOY=0 WHERE IDSYNODOY IS NULL")
 
         Dim frm As New ergates  ' form2 
         'Dim Mn1 As String = "3"
-        frm.Label1.Text = "select EPO,CHECKIN,CHECKOUT,EMAIL,ONO,ISNULL(SYNODOS,'') AS SYNODOS,DIE  ,AIRAFIXI,AIRANAX,ISNULL(CH1,'            ') AS CH1,ISNULL(CH2,'            ') AS CH2,ISNULL(CH4,'            ') AS CH4,ISNULL(CH3,'            ') AS CH3,ID,RANK,ISNULL(CH5,'            ') AS CH5,isnull(AIRPORT,'') AS AIRPORT,ISNULL(CH6,'            ') AS CH6,KINHTO,ID FROM PEL    ORDER BY EPO "
+        frm.Label1.Text = "select EPO,CHECKIN,CHECKOUT,EMAIL,ONO,ISNULL(SYNODOS,'') AS SYNODOS,DIE  ,AIRAFIXI,AIRANAX,ISNULL(CH1,'            ') AS CH1,ISNULL(CH2,'            ') AS CH2,ISNULL(CH4,'            ') AS CH4,ISNULL(CH3,'            ') AS CH3,ID,RANK,ISNULL(CH5,'            ') AS CH5,isnull(AIRPORT,'') AS AIRPORT,ISNULL(CH6,'            ') AS CH6,KINHTO,ID,ISNULL(ENERGOS,0) AS [ΣΥΝΟΔΟΣ] FROM PEL    ORDER BY EPO "
 
 
 

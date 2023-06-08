@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.Data.SqlClient
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Button
 Imports Excel = Microsoft.Office.Interop.Excel
 
 Public Class ergates
@@ -202,7 +203,7 @@ Public Class ergates
             .RowsDefaultCellStyle.BackColor = Color.Bisque
             .AlternatingRowsDefaultCellStyle.BackColor = Color.Beige
         End With
-        GridView1.AutoSizeRowsMode = _
+        GridView1.AutoSizeRowsMode =
            DataGridViewAutoSizeRowsMode.AllCells
         paint_ergasies()
         paint_test()
@@ -857,7 +858,7 @@ Public Class ergates
         For KK As Integer = 0 To 6
             mergates.widths(KK) = 100
         Next
-        mergates.Label2.Text = mkod + " " + mono + " Προέλευση Παρτίδας ;" + MYPOL  '  "synt"  'per '"υλικα...."   ' KATHG.Text
+        mergates.Label2.Text = mkod + " " + mono + " Προέλευση Παρτίδας ;" + mYpol  '  "synt"  'per '"υλικα...."   ' KATHG.Text
         mergates.widths(0) = 200
         gMenu = 22
         mergates.Read_Only = True
@@ -934,10 +935,10 @@ Public Class ergates
             If Y = dgvGrid.Rows.Count - 1 Then
                 pResult.Y = 0
                 If dgvGrid.CurrentCell.Value.ToString.ToLower.Contains(strFind.ToLower) Then
-                    MessageBox.Show("δεν υπάρχει αλλο " & strFind & " για εύρεση.", _
+                    MessageBox.Show("δεν υπάρχει αλλο " & strFind & " για εύρεση.",
                     "Grid Search...", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                 Else
-                    MessageBox.Show("'" & strFind & "' δεν βρέθηκε ", _
+                    MessageBox.Show("'" & strFind & "' δεν βρέθηκε ",
                     "Grid Search...", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                 End If
             End If
@@ -968,7 +969,7 @@ Public Class ergates
 
     End Sub
 
-    
+
 
     Private Sub DEL_TIMAGOR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DEL_TIMAGOR.Click
 
@@ -1423,7 +1424,7 @@ Public Class ergates
         'Dim Mn1 As String
         'Mn1 = kod    '  Split(KATHG.Text, ";")(0)
         'mergates.Text = per '"Αρχείο Υλικών"
-      
+
 
 
 
@@ -1445,7 +1446,7 @@ Public Class ergates
         Dim matim As String = GridView1.CurrentRow.Cells(5).Value.ToString
 
 
-        
+
         mergates.Label1.Text = "select TIMSPOL.KOD,ONO,HME,PARTIDA AS [ΠΑΡΤΙΔΑ],POSO AS [ΤΕΜΑΧ],ATIM as [ΤΙΜΟΛ.],TIMSPOL.ID  FROM TIMSPOL  INNER JOIN YLIKA ON TIMSPOL.KOD=YLIKA.KOD  where ATIM='" + matim + "' ORDER BY ID "
 
         ' mergates.Label1.Text = "SELECT T.N2 ,T.HME ,T.POSO,T.ID  FROM TIMSANAL T LEFT JOIN PARTIDES P ON T.IDPART=P.ID where IDTIMS='" + mk + "'"
@@ -1492,7 +1493,7 @@ Public Class ergates
 
 
     End Sub
-  
+
 
 
 
@@ -1522,12 +1523,23 @@ Public Class ergates
 
 
             frmPEL_ITEM.ShowDialog()
-        Else
+        Else 'ΠΕΛΑΤΗΣ
+
+
+
 
             Dim frmPEL As New FrmAddSupplier
 
             'frmPEL.n1.Text = n1.Text
             frmPEL.IsNew = False
+            Dim dt4 As New DataTable
+            dt4 = ExecuteSQLQuery("SELECT EPO+';'+CAST(ISNULL(ID,0) AS VARCHAR)  FROM PEL WHERE ENERGOS=1 AND IDPATRIKO=0")
+            For m As Integer = 0 To dt4.Rows.Count - 1
+                frmPEL.SYNODOS.Items.Add(dt4(m)(0))
+            Next
+
+
+
 
             '        Dim mpART As String = GridView1.CurrentRow.Cells("N2").Value.ToString
             '       Dim mORA As String = GridView1.CurrentRow.Cells("ΩΡΑ ΠΑΡΑΓ").Value.ToString
@@ -1540,6 +1552,15 @@ Public Class ergates
 
             frmPEL.PTHSHANAXC6.Text = GridView1.CurrentRow.Cells("CH6").Value.ToString
 
+            frmPEL.CheckBox1.Checked = GridView1.CurrentRow.Cells("ΣΥΝΟΔΟΣ").Value
+
+            If frmPEL.CheckBox1.Checked Then ' einai synodos
+                frmPEL.SYNODOS.Visible = False
+            Else
+                frmPEL.SYNODOS.Text = GridView1.CurrentRow.Cells("SYNODOS").Value.ToString
+            End If
+
+
             frmPEL.rank.Text = GridView1.CurrentRow.Cells("RANK").Value.ToString
 
             frmPEL.KINHTO.Text = GridView1.CurrentRow.Cells("KINHTO").Value.ToString
@@ -1547,7 +1568,11 @@ Public Class ergates
             frmPEL.email.Text = GridView1.CurrentRow.Cells("EMAIL").Value.ToString
             frmPEL.ONO.Text = GridView1.CurrentRow.Cells("EPO").Value.ToString
             frmPEL.onoProsf.Text = GridView1.CurrentRow.Cells("ONO").Value.ToString
-            frmPEL.Synodos.Text = GridView1.CurrentRow.Cells("SYNODOS").Value.ToString
+
+
+            '  ' = GridView1.CurrentRow.Cells("SYNODOS").Value.ToString
+
+
             frmPEL.DIE.Text = GridView1.CurrentRow.Cells("DIE").Value.ToString
             frmPEL.ID = GridView1.CurrentRow.Cells(STHLHTOY_ID).Value.ToString
             'frmPEL.ID = GridView1.CurrentRow.Cells("BAROS").Value.ToString  
@@ -1556,8 +1581,10 @@ Public Class ergates
             For L3 As Integer = 1 To 7
                 If Mid(C3, L3, 1) = "1" Then
                     frmPEL.CheckedListBox1.SetItemChecked(L3 - 1, True)
+
                 Else
                     frmPEL.CheckedListBox1.SetItemChecked(L3 - 1, False)
+
                 End If
             Next
             Dim C4 As String
