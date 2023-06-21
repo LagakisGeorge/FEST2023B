@@ -962,9 +962,28 @@ Public Class ergates
 
     Private Sub delete_label_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles delete_label.Click
 
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
+
+        End If
+
         Dim mpART As String = GridView1.CurrentRow.Cells("ID").Value.ToString
+        Dim ff As New DataTable
+        ExecuteSQLQuery("select isnull(HOTELID,0) AS HOTELID ,ISNULL(CH1,'') AS ROOM,ISNULL(CH2,'') AS HOTEL from PEL WHERE ID=" + mpART, ff)
+
+
+
+        If ff.Rows(0)("HOTELID") > 0 Then
+            MsgBox("ΕΧΕΙ ΚΑΤΑΧΩΡΗΘΕΙ ΣΕ ΔΩΜΑΤΙΟ " + ff.Rows(0)("HOTEL") + " " + ff.Rows(0)("ROOM") + Chr(13) + " ΑΔΥΝΑΤΗ Η ΔΙΑΓΡΑΦΗ")
+            Exit Sub
+
+        End If
+
+
+
         ' Dim mORA As String = GridView1.CurrentRow.Cells("ΩΡΑ ΠΑΡΑΓ").Value.ToString
-        ExecuteSQLQuery("delete from PEL WHERE ID=" + mpART + " AND (HOTELID=0 OR HOTELID IS NULL)")
+        ExecuteSQLQuery("delete from PEL WHERE ID=" + mpART + " And (HOTELID=0 Or HOTELID Is NULL)")
         paint_ergasies()
 
     End Sub
@@ -977,7 +996,7 @@ Public Class ergates
         Dim mk As String = GridView1.CurrentRow.Cells(STHLHTOY_ID).Value.ToString
         Dim mkod As String = GridView1.CurrentRow.Cells(1).Value.ToString
         Dim ff As New DataTable
-        ExecuteSQLQuery("select POSO-YPOL AS DIF FROM TIMS WHERE ID=" + mk, ff)
+        ExecuteSQLQuery("Select POSO-YPOL As DIF FROM TIMS WHERE ID= " + mk, ff)
 
 
 
@@ -1478,6 +1497,14 @@ Public Class ergates
 
     Private Sub symorfosi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EditDomatia.Click
 
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
+
+        End If
+
+
+
         Dim M_ID As String = GridView1.CurrentRow.Cells(STHLHTOY_ID).Value.ToString()
 
 
@@ -1501,6 +1528,17 @@ Public Class ergates
 
 
     Private Sub Button3_Click_2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dior_pel.Click
+
+
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
+
+        End If
+
+
+
+
         If Me.Text = "Ξενοδοχεία" Then
             Dim M_ID As String = GridView1.CurrentRow.Cells(STHLHTOY_ID).Value.ToString()
             Dim frmPEL_ITEM As New FrmADDSUPPLIER_ITEM
@@ -1617,6 +1655,14 @@ Public Class ergates
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles add_pel.Click
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
+
+        End If
+
+
+
 
         If Me.Text = "Ξενοδοχεία" Then
             'Dim M_ID As String = GridView1.CurrentRow.Cells(STHLHTOY_ID).Value.ToString()

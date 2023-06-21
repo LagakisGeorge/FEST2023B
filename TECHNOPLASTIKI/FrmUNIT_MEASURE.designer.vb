@@ -22,38 +22,38 @@ Partial Class ergates
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ergates))
         Me.ImageList3 = New System.Windows.Forms.ImageList(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.GridView1 = New System.Windows.Forms.DataGridView
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.deleteYLIKA = New System.Windows.Forms.Button
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GridView1 = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.deleteYLIKA = New System.Windows.Forms.Button()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.SYNTAGES = New System.Windows.Forms.Button
-        Me.ANALYTICS = New System.Windows.Forms.Button
-        Me.AnalPartidas = New System.Windows.Forms.Button
-        Me.Proeleysi_Partidas = New System.Windows.Forms.Button
-        Me.delete_label = New System.Windows.Forms.Button
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.DEL_TIMAGOR = New System.Windows.Forms.Button
-        Me.cFind = New System.Windows.Forms.TextBox
-        Me.cmdCancel = New System.Windows.Forms.Button
-        Me.cmdRefresh = New System.Windows.Forms.Button
-        Me.cmdAdd = New System.Windows.Forms.Button
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.SYNTAGES = New System.Windows.Forms.Button()
+        Me.ANALYTICS = New System.Windows.Forms.Button()
+        Me.AnalPartidas = New System.Windows.Forms.Button()
+        Me.Proeleysi_Partidas = New System.Windows.Forms.Button()
+        Me.delete_label = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.DEL_TIMAGOR = New System.Windows.Forms.Button()
+        Me.cFind = New System.Windows.Forms.TextBox()
+        Me.cmdCancel = New System.Windows.Forms.Button()
+        Me.cmdRefresh = New System.Windows.Forms.Button()
+        Me.cmdAdd = New System.Windows.Forms.Button()
         Me.ImageList4 = New System.Windows.Forms.ImageList(Me.components)
-        Me.n1 = New System.Windows.Forms.Label
-        Me.deleteTIMPOL = New System.Windows.Forms.Button
-        Me.DELETE_APOG_PART = New System.Windows.Forms.Button
-        Me.kinhseis = New System.Windows.Forms.Button
-        Me.CMDEPANEKTYPOSI = New System.Windows.Forms.Button
-        Me.cmdEdit = New System.Windows.Forms.Button
-        Me.analtimpol = New System.Windows.Forms.Button
-        Me.EditDomatia = New System.Windows.Forms.Button
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox
-        Me.dior_pel = New System.Windows.Forms.Button
-        Me.add_pel = New System.Windows.Forms.Button
+        Me.n1 = New System.Windows.Forms.Label()
+        Me.deleteTIMPOL = New System.Windows.Forms.Button()
+        Me.DELETE_APOG_PART = New System.Windows.Forms.Button()
+        Me.kinhseis = New System.Windows.Forms.Button()
+        Me.CMDEPANEKTYPOSI = New System.Windows.Forms.Button()
+        Me.cmdEdit = New System.Windows.Forms.Button()
+        Me.analtimpol = New System.Windows.Forms.Button()
+        Me.EditDomatia = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.dior_pel = New System.Windows.Forms.Button()
+        Me.add_pel = New System.Windows.Forms.Button()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -113,7 +113,7 @@ Partial Class ergates
         Me.deleteYLIKA.ImageList = Me.ImageList1
         Me.deleteYLIKA.Location = New System.Drawing.Point(572, 24)
         Me.deleteYLIKA.Name = "deleteYLIKA"
-        Me.deleteYLIKA.Size = New System.Drawing.Size(94, 37)
+        Me.deleteYLIKA.Size = New System.Drawing.Size(94, 38)
         Me.deleteYLIKA.TabIndex = 6
         Me.deleteYLIKA.Text = "Διαγραφή"
         Me.deleteYLIKA.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -131,7 +131,7 @@ Partial Class ergates
         '
         Me.Button1.Location = New System.Drawing.Point(341, 24)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(60, 39)
+        Me.Button1.Size = New System.Drawing.Size(60, 38)
         Me.Button1.TabIndex = 7
         Me.Button1.Text = "Σε Excel"
         Me.Button1.UseVisualStyleBackColor = True
@@ -182,9 +182,9 @@ Partial Class ergates
         'delete_label
         '
         Me.delete_label.BackColor = System.Drawing.Color.Lime
-        Me.delete_label.Location = New System.Drawing.Point(260, 25)
+        Me.delete_label.Location = New System.Drawing.Point(260, 24)
         Me.delete_label.Name = "delete_label"
-        Me.delete_label.Size = New System.Drawing.Size(80, 39)
+        Me.delete_label.Size = New System.Drawing.Size(80, 38)
         Me.delete_label.TabIndex = 6
         Me.delete_label.Text = "Διαγραφή "
         Me.delete_label.UseVisualStyleBackColor = False
@@ -195,7 +195,7 @@ Partial Class ergates
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button2.ImageKey = "find.ico"
         Me.Button2.ImageList = Me.ImageList3
-        Me.Button2.Location = New System.Drawing.Point(685, 18)
+        Me.Button2.Location = New System.Drawing.Point(672, 24)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(100, 23)
         Me.Button2.TabIndex = 12
@@ -207,7 +207,7 @@ Partial Class ergates
         Me.DEL_TIMAGOR.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DEL_TIMAGOR.ImageKey = "-.ico"
         Me.DEL_TIMAGOR.ImageList = Me.ImageList1
-        Me.DEL_TIMAGOR.Location = New System.Drawing.Point(514, 25)
+        Me.DEL_TIMAGOR.Location = New System.Drawing.Point(514, 24)
         Me.DEL_TIMAGOR.Name = "DEL_TIMAGOR"
         Me.DEL_TIMAGOR.Size = New System.Drawing.Size(94, 37)
         Me.DEL_TIMAGOR.TabIndex = 15
@@ -220,14 +220,14 @@ Partial Class ergates
         '
         Me.cFind.Location = New System.Drawing.Point(672, 41)
         Me.cFind.Name = "cFind"
-        Me.cFind.Size = New System.Drawing.Size(140, 20)
+        Me.cFind.Size = New System.Drawing.Size(100, 20)
         Me.cFind.TabIndex = 13
         '
         'cmdCancel
         '
-        Me.cmdCancel.Location = New System.Drawing.Point(822, 24)
+        Me.cmdCancel.Location = New System.Drawing.Point(793, 24)
         Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(51, 36)
+        Me.cmdCancel.Size = New System.Drawing.Size(80, 38)
         Me.cmdCancel.TabIndex = 16
         Me.cmdCancel.Text = "Εξοδος"
         Me.cmdCancel.UseVisualStyleBackColor = True
@@ -288,7 +288,7 @@ Partial Class ergates
         Me.deleteTIMPOL.ImageList = Me.ImageList1
         Me.deleteTIMPOL.Location = New System.Drawing.Point(540, 24)
         Me.deleteTIMPOL.Name = "deleteTIMPOL"
-        Me.deleteTIMPOL.Size = New System.Drawing.Size(94, 37)
+        Me.deleteTIMPOL.Size = New System.Drawing.Size(94, 38)
         Me.deleteTIMPOL.TabIndex = 20
         Me.deleteTIMPOL.Text = "Διαγραφή Τιμολ.Πώλησης"
         Me.deleteTIMPOL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -297,9 +297,9 @@ Partial Class ergates
         '
         'DELETE_APOG_PART
         '
-        Me.DELETE_APOG_PART.Location = New System.Drawing.Point(43, 23)
+        Me.DELETE_APOG_PART.Location = New System.Drawing.Point(43, 24)
         Me.DELETE_APOG_PART.Name = "DELETE_APOG_PART"
-        Me.DELETE_APOG_PART.Size = New System.Drawing.Size(130, 39)
+        Me.DELETE_APOG_PART.Size = New System.Drawing.Size(130, 38)
         Me.DELETE_APOG_PART.TabIndex = 21
         Me.DELETE_APOG_PART.Text = "Διαγρ.Απογ. Παρτίδας"
         Me.DELETE_APOG_PART.UseVisualStyleBackColor = True
@@ -344,7 +344,7 @@ Partial Class ergates
         '
         Me.analtimpol.Location = New System.Drawing.Point(401, 24)
         Me.analtimpol.Name = "analtimpol"
-        Me.analtimpol.Size = New System.Drawing.Size(88, 39)
+        Me.analtimpol.Size = New System.Drawing.Size(88, 38)
         Me.analtimpol.TabIndex = 25
         Me.analtimpol.Text = "Ανάλυση Παραστατικού"
         Me.analtimpol.UseVisualStyleBackColor = True
@@ -353,7 +353,7 @@ Partial Class ergates
         'EditDomatia
         '
         Me.EditDomatia.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.EditDomatia.Location = New System.Drawing.Point(6, 23)
+        Me.EditDomatia.Location = New System.Drawing.Point(6, 24)
         Me.EditDomatia.Name = "EditDomatia"
         Me.EditDomatia.Size = New System.Drawing.Size(113, 38)
         Me.EditDomatia.TabIndex = 26
@@ -373,9 +373,9 @@ Partial Class ergates
         'dior_pel
         '
         Me.dior_pel.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.dior_pel.Location = New System.Drawing.Point(444, 26)
+        Me.dior_pel.Location = New System.Drawing.Point(444, 24)
         Me.dior_pel.Name = "dior_pel"
-        Me.dior_pel.Size = New System.Drawing.Size(103, 35)
+        Me.dior_pel.Size = New System.Drawing.Size(80, 38)
         Me.dior_pel.TabIndex = 28
         Me.dior_pel.Text = "ΔΙΟΡΘΩΣΗ"
         Me.dior_pel.UseVisualStyleBackColor = False
@@ -384,9 +384,9 @@ Partial Class ergates
         'add_pel
         '
         Me.add_pel.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.add_pel.Location = New System.Drawing.Point(157, 22)
+        Me.add_pel.Location = New System.Drawing.Point(157, 23)
         Me.add_pel.Name = "add_pel"
-        Me.add_pel.Size = New System.Drawing.Size(97, 39)
+        Me.add_pel.Size = New System.Drawing.Size(97, 38)
         Me.add_pel.TabIndex = 29
         Me.add_pel.Text = "Νέα Εγγραφή"
         Me.add_pel.UseVisualStyleBackColor = False

@@ -144,6 +144,15 @@ Public Class test
 
 
     Private Sub Krarhseis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Krarhseis.Click
+
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
+
+        End If
+
+
+
         '------------------------------------------  bookings ----------------------------------------------------------------13032 FESTIV
         Dim PEL As New DataTable
         Dim mRankPEL As String
@@ -422,7 +431,11 @@ Public Class test
 
 
     Private Sub Button4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
 
+        End If
         Dim ANS As Integer
         ANS = MsgBox("ΠΡΟΣΟΧΗ ΘΑ ΔΙΑΓΡΑΦΟΥΝ ΟΙ ΚΡΑΤΗΣΕΙΣ", MsgBoxStyle.YesNo)
         If ANS = vbYes Then

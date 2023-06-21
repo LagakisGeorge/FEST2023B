@@ -2237,7 +2237,7 @@ Public Class MDIMain
         Dim N As Integer = dd.Rows(0)(0)
         MsgBox("Προσκεκλημένοι " + Str(N))
 
-        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where IDPEL>0 GROUP BY HOTELNAME ")
+        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where isnull(IDPEL,0)>0 GROUP BY HOTELNAME ")
         Dim cal As String = ""
         For lk As Integer = 0 To dd.Rows.Count - 1
             cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + Chr(13)
@@ -2245,6 +2245,22 @@ Public Class MDIMain
         Next
         ' N = dd.Rows(0)(0)
         MsgBox("Διανυκτερεύσεις " + Chr(13) + cal)
+
+
+        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where isnull(IDPEL,0)=0 GROUP BY HOTELNAME ")
+        cal = ""
+        For lk As Integer = 0 To dd.Rows.Count - 1
+            cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + Chr(13)
+
+        Next
+        ' N = dd.Rows(0)(0)
+        MsgBox("Αδιάθετες διανυκτερεύσεις " + Chr(13) + cal)
+
+
+
+
+
+
 
         Dim QQ As String = "SELECT CHECKIN,CHECKOUT, EPO,(DATEDIFF(DAY,CHECKIN,CHECKOUT) ) AS [ΑΙΤ.ΔΙΑΝ],(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) AS [ΠΡΑΓ.ΔΙΑΝ],ID,ISNULL(CH1,'            ') AS CH1,ISNULL(CH2,'            ') AS CH2 ,ID AS IDD  FROM PEL WHERE (DATEDIFF(DAY,CHECKIN,CHECKOUT) )<>(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) "
 

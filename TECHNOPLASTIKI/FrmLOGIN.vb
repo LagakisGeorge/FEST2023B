@@ -15,8 +15,8 @@
         username = ""
         xuserid = xUser_ID
         xUser_ID = 0
-        txtuser.Text = "admin"
-        txtpassword.Text = "admin"
+        'txtuser.Text = "admin"
+        'txtpassword.Text = "admin"
         txtuser.Select()
         If Not checkServer() Then
             xUser_ID = 1
@@ -97,60 +97,60 @@
 
             LOGID = xUser_ID  'sqlDT.Rows(0)("LOG_ID")
 
-            If UCase(username) = "ADMIN" Then ' username = "admin" Then
-                'MDIMain.toexcel.Enabled = True
-                MDIMain.ListaErgasion.Enabled = True
-                MDIMain.excelanal.Enabled = True
-                '   MDIMain.cmdERGATES.Enabled = True
-                MDIMain.cmdCustomerOrder.Enabled = True
-                MDIMain.countDays.Enabled = True
-                MDIMain.Button2.Enabled = True
-                MDIMain.Button3.Enabled = True
-                MDIMain.cmdExcel.Enabled = True
-                MDIMain.Button5.Enabled = True
-                MDIMain.cmdSalesReceipt.Enabled = True
+            'If UCase(username) = "ADMIN" Then ' username = "admin" Then
+            'MDIMain.toexcel.Enabled = True
+            MDIMain.ListaErgasion.Enabled = True
+            MDIMain.excelanal.Enabled = True
+            '   MDIMain.cmdERGATES.Enabled = True
+            MDIMain.cmdCustomerOrder.Enabled = True
+            MDIMain.countDays.Enabled = True
+            MDIMain.Button2.Enabled = True
+            MDIMain.Button3.Enabled = True
+            MDIMain.cmdExcel.Enabled = True
+            MDIMain.Button5.Enabled = True
+            MDIMain.cmdSalesReceipt.Enabled = True
 
-                MDIMain.cmdCustomerOrder.Enabled = True
-                MDIMain.Button6.Enabled = True
-                MDIMain.Button7.Enabled = True
-                MDIMain.hotels.Enabled = True
-                MDIMain.Button4.Enabled = True
-                MDIMain.Button9.Enabled = True
-                MDIMain.SystemFileToolStripMenuItem.Enabled = True
-
-
-                MDIMain.cmdSalesReceipt.Enabled = True
-
-            Else
-
-                MDIMain.ListaErgasion.Enabled = True
-                MDIMain.excelanal.Enabled = True
-                '   MDIMain.cmdERGATES.Enabled = True
-                MDIMain.cmdCustomerOrder.Enabled = True
-                MDIMain.countDays.Enabled = True
-                MDIMain.Button2.Enabled = True
-                MDIMain.Button3.Enabled = True
-                MDIMain.cmdExcel.Enabled = True
-                MDIMain.Button5.Enabled = True
-                MDIMain.cmdSalesReceipt.Enabled = True
-
-                MDIMain.cmdCustomerOrder.Enabled = True
-                MDIMain.Button6.Enabled = True
-                MDIMain.Button7.Enabled = True
-                MDIMain.hotels.Enabled = True
-                MDIMain.Button4.Enabled = True
-                MDIMain.Button9.Enabled = True
+            MDIMain.cmdCustomerOrder.Enabled = True
+            MDIMain.Button6.Enabled = True
+            MDIMain.Button7.Enabled = True
+            MDIMain.hotels.Enabled = True
+            MDIMain.Button4.Enabled = True
+            MDIMain.Button9.Enabled = True
+            MDIMain.SystemFileToolStripMenuItem.Enabled = True
 
 
-                MDIMain.SystemFileToolStripMenuItem.Enabled = False
+            '    MDIMain.cmdSalesReceipt.Enabled = True
 
-                MDIMain.cmdExcel.Visible = False
+            'Else
 
-                MDIMain.cmdSalesReceipt.Visible = False
+            '    MDIMain.ListaErgasion.Enabled = True
+            '    MDIMain.excelanal.Enabled = True
+            '    '   MDIMain.cmdERGATES.Enabled = True
+            '    MDIMain.cmdCustomerOrder.Enabled = True
+            '    MDIMain.countDays.Enabled = True
+            '    MDIMain.Button2.Enabled = True
+            '    MDIMain.Button3.Enabled = True
+            '    MDIMain.cmdExcel.Enabled = True
+            '    MDIMain.Button5.Enabled = True
+            '    MDIMain.cmdSalesReceipt.Enabled = True
 
-                MDIMain.Button7.Visible = False
+            '    MDIMain.cmdCustomerOrder.Enabled = True
+            '    MDIMain.Button6.Enabled = True
+            '    MDIMain.Button7.Enabled = True
+            '    MDIMain.hotels.Enabled = True
+            '    MDIMain.Button4.Enabled = True
+            '    MDIMain.Button9.Enabled = True
 
-            End If
+
+            '    MDIMain.SystemFileToolStripMenuItem.Enabled = False
+
+            '    MDIMain.cmdExcel.Visible = False
+
+            '    MDIMain.cmdSalesReceipt.Visible = False
+
+            '    MDIMain.Button7.Visible = False
+
+            'End If
 
 
 
