@@ -22,21 +22,23 @@ Partial Class FrmADDSUPPLIER_ITEM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.txtEmail = New System.Windows.Forms.TextBox
-        Me.cmdsave = New System.Windows.Forms.Button
-        Me.cmdcancel = New System.Windows.Forms.Button
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.txtDie = New System.Windows.Forms.TextBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.N1 = New System.Windows.Forms.Label
-        Me.txtName = New System.Windows.Forms.TextBox
-        Me.txtTHL = New System.Windows.Forms.TextBox
-        Me.RANK = New System.Windows.Forms.TextBox
-        Me.ComboCAT = New System.Windows.Forms.ComboBox
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtEmail = New System.Windows.Forms.TextBox()
+        Me.cmdsave = New System.Windows.Forms.Button()
+        Me.cmdcancel = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtDie = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.N1 = New System.Windows.Forms.Label()
+        Me.txtName = New System.Windows.Forms.TextBox()
+        Me.txtTHL = New System.Windows.Forms.TextBox()
+        Me.RANK = New System.Windows.Forms.TextBox()
+        Me.ComboCAT = New System.Windows.Forms.ComboBox()
+        Me.MaxNights = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -44,7 +46,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 35)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(85, 13)
+        Me.Label1.Size = New System.Drawing.Size(111, 17)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Προτεραιότητα :"
         '
@@ -53,7 +55,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(12, 59)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(109, 13)
+        Me.Label2.Size = New System.Drawing.Size(141, 17)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Ονομα Ξενοδοχείου :"
         '
@@ -62,7 +64,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(12, 85)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(38, 13)
+        Me.Label3.Size = New System.Drawing.Size(48, 17)
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "Email :"
         '
@@ -71,7 +73,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.txtEmail.Location = New System.Drawing.Point(126, 85)
         Me.txtEmail.MaxLength = 50
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(293, 21)
+        Me.txtEmail.Size = New System.Drawing.Size(293, 24)
         Me.txtEmail.TabIndex = 0
         '
         'cmdsave
@@ -97,7 +99,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(12, 12)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(73, 13)
+        Me.Label4.Size = New System.Drawing.Size(92, 17)
         Me.Label4.TabIndex = 10
         Me.Label4.Text = "Category ID :"
         '
@@ -106,7 +108,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.txtDie.Location = New System.Drawing.Point(125, 141)
         Me.txtDie.MaxLength = 50
         Me.txtDie.Name = "txtDie"
-        Me.txtDie.Size = New System.Drawing.Size(293, 21)
+        Me.txtDie.Size = New System.Drawing.Size(293, 24)
         Me.txtDie.TabIndex = 12
         '
         'Label5
@@ -114,7 +116,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(11, 141)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(64, 13)
+        Me.Label5.Size = New System.Drawing.Size(82, 17)
         Me.Label5.TabIndex = 14
         Me.Label5.Text = "Διεύθυνση :"
         '
@@ -123,7 +125,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(11, 115)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(128, 13)
+        Me.Label6.Size = New System.Drawing.Size(164, 17)
         Me.Label6.TabIndex = 13
         Me.Label6.Text = "Τηλέφωνο Ξενοδοχείου :"
         '
@@ -132,7 +134,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.N1.AutoSize = True
         Me.N1.Location = New System.Drawing.Point(363, 225)
         Me.N1.Name = "N1"
-        Me.N1.Size = New System.Drawing.Size(38, 13)
+        Me.N1.Size = New System.Drawing.Size(47, 17)
         Me.N1.TabIndex = 16
         Me.N1.Text = "Label7"
         Me.N1.Visible = False
@@ -142,7 +144,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.txtName.Location = New System.Drawing.Point(126, 58)
         Me.txtName.MaxLength = 50
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(293, 21)
+        Me.txtName.Size = New System.Drawing.Size(293, 24)
         Me.txtName.TabIndex = 17
         '
         'txtTHL
@@ -150,7 +152,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.txtTHL.Location = New System.Drawing.Point(125, 112)
         Me.txtTHL.MaxLength = 50
         Me.txtTHL.Name = "txtTHL"
-        Me.txtTHL.Size = New System.Drawing.Size(293, 21)
+        Me.txtTHL.Size = New System.Drawing.Size(293, 24)
         Me.txtTHL.TabIndex = 18
         '
         'RANK
@@ -158,7 +160,7 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.RANK.Location = New System.Drawing.Point(125, 32)
         Me.RANK.MaxLength = 50
         Me.RANK.Name = "RANK"
-        Me.RANK.Size = New System.Drawing.Size(293, 21)
+        Me.RANK.Size = New System.Drawing.Size(293, 24)
         Me.RANK.TabIndex = 20
         '
         'ComboCAT
@@ -167,15 +169,34 @@ Partial Class FrmADDSUPPLIER_ITEM
         Me.ComboCAT.Items.AddRange(New Object() {"2 ΑΣΤΕΡΩΝ", "3 ΑΣΤΕΡΩΝ", "4 ΑΣΤΕΡΩΝ", "5 ΑΣΤΕΡΩΝ"})
         Me.ComboCAT.Location = New System.Drawing.Point(125, 9)
         Me.ComboCAT.Name = "ComboCAT"
-        Me.ComboCAT.Size = New System.Drawing.Size(121, 21)
+        Me.ComboCAT.Size = New System.Drawing.Size(121, 25)
         Me.ComboCAT.TabIndex = 21
+        '
+        'MaxNights
+        '
+        Me.MaxNights.Location = New System.Drawing.Point(125, 171)
+        Me.MaxNights.MaxLength = 50
+        Me.MaxNights.Name = "MaxNights"
+        Me.MaxNights.Size = New System.Drawing.Size(293, 24)
+        Me.MaxNights.TabIndex = 22
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(11, 171)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(96, 17)
+        Me.Label7.TabIndex = 23
+        Me.Label7.Text = "Αριθ.Διανυκτ :"
         '
         'FrmADDSUPPLIER_ITEM
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(456, 334)
+        Me.Controls.Add(Me.MaxNights)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.ComboCAT)
         Me.Controls.Add(Me.RANK)
         Me.Controls.Add(Me.txtTHL)
@@ -215,4 +236,6 @@ Partial Class FrmADDSUPPLIER_ITEM
     Friend WithEvents txtTHL As System.Windows.Forms.TextBox
     Friend WithEvents RANK As System.Windows.Forms.TextBox
     Friend WithEvents ComboCAT As System.Windows.Forms.ComboBox
+    Friend WithEvents MaxNights As TextBox
+    Friend WithEvents Label7 As Label
 End Class

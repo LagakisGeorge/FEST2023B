@@ -2237,24 +2237,24 @@ Public Class MDIMain
         Dim N As Integer = dd.Rows(0)(0)
         MsgBox("Προσκεκλημένοι " + Str(N))
 
-        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where isnull(IDPEL,0)>0 GROUP BY HOTELNAME ")
+        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME,ISNULL(H.MAXNIGHTS,0) AS MAXNIGHTS from HOTROOMDAYS R inner JOIN HOTELS H ON H.ID=R.HOTELID   where isnull(IDPEL,0)>0 GROUP BY HOTELNAME,MAXNIGHTS ")
         Dim cal As String = ""
         For lk As Integer = 0 To dd.Rows.Count - 1
-            cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + Chr(13)
+            cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + " ΑΠΟ " + dd.Rows(lk)("MAXNIGHTS").ToString + Chr(13)
 
         Next
         ' N = dd.Rows(0)(0)
         MsgBox("Διανυκτερεύσεις " + Chr(13) + cal)
 
 
-        dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where isnull(IDPEL,0)=0 GROUP BY HOTELNAME ")
-        cal = ""
-        For lk As Integer = 0 To dd.Rows.Count - 1
-            cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + Chr(13)
+        'dd = ExecuteSQLQuery("select count(*) as ccc,HOTELNAME from HOTROOMDAYS  where isnull(IDPEL,0)=0 GROUP BY HOTELNAME ")
+        'cal = ""
+        'For lk As Integer = 0 To dd.Rows.Count - 1
+        '    cal = cal + dd.Rows(lk)(0).ToString + "-" + dd.Rows(lk)(1) + Chr(13)
 
-        Next
-        ' N = dd.Rows(0)(0)
-        MsgBox("Αδιάθετες διανυκτερεύσεις " + Chr(13) + cal)
+        'Next
+        '' N = dd.Rows(0)(0)
+        'MsgBox("Αδιάθετες διανυκτερεύσεις " + Chr(13) + cal)
 
 
 
@@ -2467,7 +2467,7 @@ Public Class MDIMain
 
         Dim frm As New ergates  ' form2 
         'Dim Mn1 As String = "3"
-        frm.Label1.Text = "select NAME,CATEGORY,EMAIL,THL,DIE,ID,RANK  FROM HOTELS "
+        frm.Label1.Text = "select NAME,CATEGORY,EMAIL,THL,DIE,ID,RANK,MAXNIGHTS  FROM HOTELS "
 
         frm.EditDomatia.Visible = True
 

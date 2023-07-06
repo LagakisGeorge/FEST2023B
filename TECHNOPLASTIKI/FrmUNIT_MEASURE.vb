@@ -1555,6 +1555,8 @@ Public Class ergates
             frmPEL_ITEM.RANK.Text = GridView1.CurrentRow.Cells("RANK").Value.ToString
             frmPEL_ITEM.ComboCAT.Text = GridView1.CurrentRow.Cells("CATEGORY").Value.ToString
 
+            frmPEL_ITEM.MaxNights.Text = GridView1.CurrentRow.Cells("MAXNIGHTS").Value.ToString
+
             'frmPEL_ITEM.txtcategory.Text = GridView1.CurrentRow.Cells(1).Value.ToString
 
 

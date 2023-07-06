@@ -48,6 +48,12 @@
         '[THL] NVARCHAR(30),
         '[DIE] NVARCHAR(35),
         '[NAME] [varchar](50) NULL)
+        'alter table 
+        '[FESTIVALHOTEL].[dbo].[HOTELS]
+        'add MAXNIGHTS INT DEFAULT 0
+
+
+
         Dim SQL As String = ""
         Dim CAT2 As String = Mid(ComboCAT.Text, 1, 1)
         Dim RANK2 As String = RANK.Text
@@ -58,10 +64,10 @@
 
         If IsNew Then
 
-            SQL = "insert into HOTELS (CATEGORY,RANK,EMAIL,NAME,THL,DIE) VALUES (" + CAT2 + "," + RANK2 + ",'" + txtEmail.Text + "','" + Replace(txtName.Text, "'", "`") + "','" + txtTHL.Text + "','" + txtTHL.Text + "')"
+            SQL = "insert into HOTELS (CATEGORY,RANK,EMAIL,NAME,THL,DIE,MAXNIGHTS) VALUES (" + CAT2 + "," + RANK2 + ",'" + txtEmail.Text + "','" + Replace(txtName.Text, "'", "`") + "','" + txtTHL.Text + "','" + txtTHL.Text + "'," + MAXNIGHTS.TEXT + ")"
 
         Else
-            SQL = "UPDATE HOTELS SET CATEGORY=" + CAT2 + ",RANK=" + RANK2 + ",EMAIL='" + txtEmail.Text + "',NAME='" + txtName.Text + "',THL='" + txtTHL.Text + "',DIE='" + txtDie.Text + "'  WHERE ID=" + Str(ID)
+            SQL = "UPDATE HOTELS SET MAXNIGHTS=" + MaxNights.Text.Replace(",", ".") + ",  CATEGORY=" + CAT2 + ",RANK=" + RANK2 + ",EMAIL='" + txtEmail.Text + "',NAME='" + txtName.Text + "',THL='" + txtTHL.Text + "',DIE='" + txtDie.Text + "'  WHERE ID=" + Str(ID)
 
 
         End If

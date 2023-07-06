@@ -169,7 +169,7 @@ Public Class test
         ListBox1.Items.Add("ΑΠΕΤΥΧΑΝ ΝΑ ΚΑΝΟΥΝ ΚΡΑΡΗΣΗ:")
         Dim ISOK As Boolean = True
 
-
+        'ολοι οι πελάτες που δεν έχουν κάνει checkin
         For K As Integer = 0 To PEL.Rows.Count - 1
             ISOK = True
             If IsDBNull(PEL.Rows(K)("CHECKIN")) Or IsDBNull(PEL.Rows(K)("CHECKOUT")) Then
@@ -272,6 +272,16 @@ Public Class test
 
     Private Sub DGV_CellClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles DGV.CellClick
         '-------------------------------------1o CLICK----------------------------------------------------------------------------
+
+        If UCase(username) = "ADMIN" Then
+        Else
+            Exit Sub
+
+        End If
+
+
+
+
         Dim R, C As Integer
         R = e.RowIndex
         C = e.ColumnIndex
