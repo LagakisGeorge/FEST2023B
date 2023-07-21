@@ -22,19 +22,21 @@ Partial Class Fdomatia
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.D1 = New System.Windows.Forms.DateTimePicker
-        Me.D2 = New System.Windows.Forms.DateTimePicker
-        Me.domatio = New System.Windows.Forms.TextBox
-        Me.kreb = New System.Windows.Forms.ComboBox
-        Me.ListView1 = New System.Windows.Forms.ListView
-        Me.cat = New System.Windows.Forms.ComboBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.DIAGRAFI = New System.Windows.Forms.Button
-        Me.DIORTOSI = New System.Windows.Forms.Button
-        Me.CreateDays = New System.Windows.Forms.Button
-        Me.HotelName = New System.Windows.Forms.Label
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.D1 = New System.Windows.Forms.DateTimePicker()
+        Me.D2 = New System.Windows.Forms.DateTimePicker()
+        Me.domatio = New System.Windows.Forms.TextBox()
+        Me.kreb = New System.Windows.Forms.ComboBox()
+        Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.cat = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DIAGRAFI = New System.Windows.Forms.Button()
+        Me.DIORTOSI = New System.Windows.Forms.Button()
+        Me.CreateDays = New System.Windows.Forms.Button()
+        Me.HotelName = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.LabID = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -81,6 +83,7 @@ Partial Class Fdomatia
         Me.ListView1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.ListView1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.ListView1.GridLines = True
+        Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(23, 107)
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(739, 464)
@@ -152,11 +155,30 @@ Partial Class Fdomatia
         Me.HotelName.Size = New System.Drawing.Size(0, 13)
         Me.HotelName.TabIndex = 12
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(769, 260)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(131, 59)
+        Me.Button2.TabIndex = 13
+        Me.Button2.Text = "Δημιουργία Ημερών μόνο των νέων δωματίων"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'LabID
+        '
+        Me.LabID.AutoSize = True
+        Me.LabID.Location = New System.Drawing.Point(1072, 36)
+        Me.LabID.Name = "LabID"
+        Me.LabID.Size = New System.Drawing.Size(0, 13)
+        Me.LabID.TabIndex = 14
+        '
         'Fdomatia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1201, 600)
+        Me.Controls.Add(Me.LabID)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.HotelName)
         Me.Controls.Add(Me.CreateDays)
         Me.Controls.Add(Me.DIORTOSI)
@@ -189,4 +211,6 @@ Partial Class Fdomatia
     Friend WithEvents DIORTOSI As System.Windows.Forms.Button
     Friend WithEvents CreateDays As System.Windows.Forms.Button
     Friend WithEvents HotelName As System.Windows.Forms.Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents LabID As Label
 End Class

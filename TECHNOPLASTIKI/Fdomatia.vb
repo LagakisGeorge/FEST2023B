@@ -159,6 +159,7 @@
             ListView1.Items(N).SubItems.Add(Format(DT2.Rows(K)("eos"), "dd/MM/yyyy")) 'DT2.Rows(K)("EOS").ToString)
             ListView1.Items(N).SubItems.Add(DT2.Rows(K)("KREBATIA").ToString)
             ListView1.Items(N).SubItems.Add(DT2.Rows(K)("CATEGORY").ToString)
+            ListView1.Items(N).SubItems.Add(DT2.Rows(K)("ID").ToString)
 
             N = N + 1
 
@@ -174,14 +175,14 @@
 
         ' ΕΝΗΜΕΡΩΣΗ
         If DIORTOSI.BackColor = Color.Green Then
-            If Len(cat.Text) = 0 Then
-                MsgBox("ΚΑΤΗΓΟΡΊΑ;")
+            'If Len(cat.Text) = 0 Then
+            '    MsgBox("ΚΑΤΗΓΟΡΊΑ;")
 
-                cat.Focus()
-                Exit Sub
+            '    cat.Focus()
+            '    Exit Sub
 
 
-            End If
+            'End If
             If Len(kreb.Text) = 0 Then
                 MsgBox("ΚΛΙΝΕΣ;")
 
@@ -189,13 +190,13 @@
                 Exit Sub
 
             End If
-            ExecuteSQLQuery("update HOTROOMS set KREBATIA=" + kreb.Text + " WHERE ROOMN='" + domatio.Text + "'")
+            ExecuteSQLQuery("update HOTROOMS set KREBATIA=" + kreb.Text + " WHERE HOTELID=" + Str(ID) + " AND ROOMN='" + domatio.Text + "'")
             'Format(D1.Value, "MM/dd/yyyy") + "'
-            ExecuteSQLQuery("update HOTROOMS set APO='" + Format(D1.Value, "MM/dd/yyyy") + "' WHERE ROOMN='" + domatio.Text + "'")
+            ExecuteSQLQuery("update HOTROOMS set APO='" + Format(D1.Value, "MM/dd/yyyy") + "' WHERE HOTELID=" + Str(ID) + " AND ROOMN='" + domatio.Text + "'")
 
-            ExecuteSQLQuery("update HOTROOMS set EOS='" + Format(D2.Value, "MM/dd/yyyy") + "' WHERE ROOMN='" + domatio.Text + "'")
+            ExecuteSQLQuery("update HOTROOMS set EOS='" + Format(D2.Value, "MM/dd/yyyy") + "' WHERE HOTELID=" + Str(ID) + " AND ROOMN='" + domatio.Text + "'")
 
-            ExecuteSQLQuery("update HOTROOMS set CATEGORY=" + cat.Text + " WHERE ROOMN='" + domatio.Text + "'")
+            'ExecuteSQLQuery("update HOTROOMS set CATEGORY=" + cat.Text + " WHERE HOTELID=" + Str(ID) + " AND  ROOMN='" + domatio.Text + "'")
 
 
             DIORTOSI.BackColor = Color.LightGray
@@ -206,6 +207,9 @@
             DIAGRAFI.Enabled = True
             Button1.Enabled = True
             ListView1.Enabled = True
+
+
+            updateHotRoomDays()
 
 
         Else   'ΔΙΟΡΘΩΣΗ
@@ -220,7 +224,7 @@
                 DIAGRAFI.Enabled = False
                 Button1.Enabled = False
                 ListView1.Enabled = False
-
+                LabID.Text = ListView1.Items(n).SubItems(5).Text
 
                 domatio.Text = ListView1.Items(n).SubItems(0).Text
                 D1.Value = ListView1.Items(n).SubItems(1).Text
@@ -241,7 +245,41 @@
         End If
     End Sub
 
-  
+    Private Sub UpdateHotRoomDays()
+        Dim mApo As Date = D1.Value
+        Dim mEos As Date = D2.Value
+
+        Dim hmeres As Integer = DateDiff("d", mApo, mEos) + 1
+        Dim hmera As Date = mApo
+        Dim SQL As String
+
+        Dim HOTROOMDAYS As New DataTable
+
+
+
+
+        Dim ans As Integer = MsgBox("Να δημιουργηθούν οι ημερες για το δωμάτιο " + domatio.Text, MsgBoxStyle.YesNo)
+        'If ans = MsgBoxResult.Yes Then
+        For nn As Integer = 1 To hmeres
+
+            ExecuteSQLQuery("select COUNT(*) from HOTROOMDAYS WHERE DATECHECKIN='" + Format(hmera, "MM/dd/yyyy") + "' AND IDROOM=" + LabID.Text + " AND HOTELID=" + Str(ID), HOTROOMDAYS)
+            If HOTROOMDAYS(0)(0) = 0 Then
+                SQL = "('" + HotelName.Text + "','" + domatio.Text + "'," + LabID.Text + "," + Str(ID)
+                SQL = SQL + ",'" + Format(hmera, "MM/dd/yyyy") + "')"
+                ExecuteSQLQuery("INSERT INTO HOTROOMDAYS (HOTELNAME,ROOMN,IDROOM,HOTELID,DATECHECKIN) VALUES " + SQL)
+            End If
+
+            hmera = DateAdd("d", 1, hmera)
+        Next
+        MsgBox("ok")
+
+        'End If
+
+
+
+    End Sub
+
+
     Private Sub CreateDays_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CreateDays.Click
         Dim HOTROOMS As New DataTable
         ExecuteSQLQuery("select COUNT(*) from HOTROOMDAYS WHERE HOTELID=" + Str(ID), HOTROOMS)
@@ -250,8 +288,19 @@
             ANS = MsgBox("ΥΠΑΡΧΟΥΝ " + Str(HOTROOMS(0)(0)) + " ΕΓΓΡΑΦΕΣ. Να σβηστούν;", MsgBoxStyle.YesNo)
             If ANS = MsgBoxResult.No Then
                 Exit Sub
+            Else
+                'ΣΒΗΝΕΙ ΤΟ HOTROOMDAYS ΜΟΝΟ ΑΝ ΔΕΝ ΕΧΟΥΝ ΚΑΤΑΧΩΡΗΘΕΙ ΠΕΛΑΤΕΣ
+                Dim HOTROOMkat As New DataTable
+                ExecuteSQLQuery("select COUNT(*) from HOTROOMDAYS WHERE PELID>0 AND  HOTELID=" + Str(ID), HOTROOMkat)
+                If HOTROOMkat(0)(0) > 0 Then
+                    ANS = MsgBox("ΥΠΑΡΧΟΥΝ " + Str(HOTROOMkat(0)(0)) + " ΕΓΓΡΑΦΕΣ ΚΑΤΑΧΩΡΗΜΕΝΕΣ ΣΕ ΠΡΟΣΚΕΚΛΗΜΕΝΟΥΣ. ΑΔΥΝΑΤΗ Η ΔΙΑΓΡΑΦΗ;", MsgBoxStyle.OkOnly)
+                    Exit Sub
+                Else
+                    ExecuteSQLQuery("delete from HOTROOMDAYS WHERE HOTELID=" + Str(ID), HOTROOMS)
+
+                End If
             End If
-            ExecuteSQLQuery("delete from HOTROOMDAYS WHERE HOTELID=" + Str(ID), HOTROOMS)
+
 
 
         End If
@@ -273,6 +322,47 @@
                 hmera = DateAdd("d", 1, hmera)
 
             Next
+
+        Next
+        MsgBox("ok")
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim HOTROOMS As New DataTable
+
+
+
+
+
+        ExecuteSQLQuery("select * from HOTROOMS WHERE HOTELID=" + Str(ID), HOTROOMS)
+        Dim N As Integer
+        For K As Integer = 0 To HOTROOMS.Rows.Count - 1
+            Dim mApo As Date = HOTROOMS.Rows(K)("apo")
+            Dim mEos As Date = HOTROOMS.Rows(K)("eos")
+            Dim hmeres As Integer = DateDiff("d", mApo, mEos) + 1
+            Dim hmera As Date = mApo
+            Dim SQL As String
+
+            Dim HOTROOMDAYS As New DataTable
+
+            ExecuteSQLQuery("select COUNT(*) from HOTROOMDAYS WHERE IDROOM=" + HOTROOMS.Rows(K)("ID").ToString + " AND HOTELID=" + Str(ID), HOTROOMDAYS)
+
+            If HOTROOMDAYS(0)(0) = 0 Then
+                Dim ans As Integer = MsgBox("Να δημιουργηθούν οι ημερες για το δωμάτιο " + HOTROOMS(K)("ROOMN"), MsgBoxStyle.YesNo)
+                If ans = MsgBoxResult.Yes Then
+                    For nn As Integer = 1 To hmeres
+                        SQL = "('" + HotelName.Text + "','" + HOTROOMS(K)("ROOMN") + "'," + HOTROOMS.Rows(K)("ID").ToString + "," + HOTROOMS.Rows(K)("HOTELID").ToString
+                        SQL = SQL + ",'" + Format(hmera, "MM/dd/yyyy") + "')"
+                        ExecuteSQLQuery("INSERT INTO HOTROOMDAYS (HOTELNAME,ROOMN,IDROOM,HOTELID,DATECHECKIN) VALUES " + SQL)
+                        hmera = DateAdd("d", 1, hmera)
+                    Next
+                    MsgBox("ok")
+
+                End If
+
+
+            End If
+
 
         Next
         MsgBox("ok")

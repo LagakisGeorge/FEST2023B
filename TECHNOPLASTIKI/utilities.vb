@@ -1078,7 +1078,7 @@ Public Class utilities
         Dim C As String = "FESTIVAL.BAK"
 
 100:    C = InputBox("ΔΩΣΕ ΟΝΟΜΑ BACKUP ΤΗΣ ΒΑΣΗΣ THERMO ΣΤΟ FEST.bak", , C)
-110:    ExecuteSQLQuery("BACKUP DATABASE [TECHNOPLASTIKI] TO  DISK ='" + C + "' WITH NOFORMAT, NOINIT, SKIP, NOREWIND, NOUNLOAD,  STATS = 10")
+110:    ExecuteSQLQuery("BACKUP DATABASE [FESTIVALHOTEL] TO  DISK ='" + C + "' WITH NOFORMAT, NOINIT, SKIP, NOREWIND, NOUNLOAD,  STATS = 10")
 120:    MsgBox("ΟΛΟΚΛΗΡΩΘΗΚΕ")
 
     End Sub

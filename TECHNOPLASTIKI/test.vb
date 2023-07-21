@@ -123,9 +123,10 @@ Public Class test
 
             If HTR.Rows(K)("idpel") > 0 Then
                 DGV.Rows(seira).Cells(sthlh).Value = HTR.Rows(K)("EPO") + "_                               " + Str(HTR.Rows(K)("id")) ' HTR.Rows(K)("idpel")
-                DGV.Rows(seira).Cells(sthlh).Style.BackColor = Color.Green
+                DGV.Rows(seira).Cells(sthlh).Style.BackColor = Color.LightGreen
+
             Else
-                If DGV.Rows(seira).Cells(sthlh).Style.BackColor = Color.Green Then
+                If DGV.Rows(seira).Cells(sthlh).Style.BackColor = Color.LightGreen Then
                     test = 1
                 Else
                     DGV.Rows(seira).Cells(sthlh).Value = "_                        " + Str(HTR.Rows(K)("id")) ' HTR.Rows(K)("IDPEL")
@@ -180,7 +181,7 @@ Public Class test
                 MsgBox("ΔΕΝ ΕΧΕΙ RANK O/H" + PEL.Rows(K)("EPO"))
                 ISOK = False
             End If
-            mRankPel = PEL.Rows(K)("rank").ToString
+            mRankPEL = PEL.Rows(K)("rank").ToString
 
 
             If ISOK Then
@@ -213,8 +214,8 @@ Public Class test
                 'Dim Sql As String = "DATECHECKIN>=" + MDAY + "' AND DATECKECKOUT AND (IDPEL IS NULL OR IDPEL=0) ORDER BY RANK "
                 'ExecuteSQLQuery("select  DATECHECKIN,IDPEL,D.ID AS ID,HOTELID,IDPEL from HOTROOMDAYS D INNER JOIN HOTELS H ON D.HOTELID=H.ID  WHERE " + Sql, HTR)
 
-                ' ΑΚΡΙΒΩΣ ΓΙΑ ΤΗΝ ΗΜΕΡΑ ΤΟΥ CHECKIN ΒΛΕΠΩ ΤΑ ΔΙΑΘΕΣΙΜΑ ΔΩΜΑΤΙΑ
-                ExecuteSQLQuery("select  DATECHECKIN,IDPEL,D.ID AS ID,HOTELID,IDPEL,IDROOM,H.NAME,D.ROOMN AS ROOMN from HOTROOMDAYS D INNER JOIN HOTELS H ON D.HOTELID=H.ID  WHERE  H.RANK<=" + mRankpEL + " AND CONVERT(CHAR(10),DATECHECKIN,103)='" + MDAY + "' AND (IDPEL IS NULL OR IDPEL=0) ORDER BY H.RANK desc ", HTR)
+                'HTR ----> ΑΚΡΙΒΩΣ ΓΙΑ ΤΗΝ ΗΜΕΡΑ ΤΟΥ CHECKIN ΒΛΕΠΩ ΤΑ ΔΙΑΘΕΣΙΜΑ ΔΩΜΑΤΙΑ
+                ExecuteSQLQuery("select  DATECHECKIN,IDPEL,D.ID AS ID,HOTELID,IDPEL,IDROOM,H.NAME,D.ROOMN AS ROOMN,H.MAXNIGHTS from HOTROOMDAYS D INNER JOIN HOTELS H ON D.HOTELID=H.ID  WHERE  H.RANK<=" + mRankPEL + " AND CONVERT(CHAR(10),DATECHECKIN,103)='" + MDAY + "' AND (IDPEL IS NULL OR IDPEL=0) ORDER BY H.RANK desc ", HTR)
                 For L As Integer = 0 To HTR.Rows.Count - 1 ' ΟΛΑ ΤΑ ΔΙΑΘΕΣΙΜΑ
 
                     If PEL.Rows(K)("ID") = 13032 Then
@@ -229,15 +230,23 @@ Public Class test
                     '
                     Dim OK As Integer = 0
                     Try
+                        Dim KATEIL_nyxtes As New DataTable
+                        ExecuteSQLQuery("select count(*) from HOTROOMDAYS WHERE isnull(IDPEL,0)>0 and HOTELID=" + HTR(L)("HOTELID").ToString(), KATEIL_nyxtes)
 
 
-                        ExecuteSQLQuery("select count(*) from HOTROOMDAYS WHERE DATECHECKIN>='" + Format(DCIND, "MM/dd/yyyy") + "' AND DATECHECKIN<'" + Format(DCOUTD, "MM/dd/yyyy") + "' AND IDROOM=" + HTR(L)("IDROOM").ToString + " AND IDPEL=0", HRDAYS)
-                        If HRDAYS(0)(0) = hmeres Then  ' εχει διαθεσιμες ολες τις ημερες οποτε οκ
-                            ExecuteSQLQuery("UPDATE PEL SET CH2='" + HTR.Rows(0)("NAME") + "',CH1=" + HTR.Rows(0)("ROOMN") + ",HOTELID=" + HTR.Rows(0)("HOTELID").ToString + " WHERE ID=" + PEL(K)("ID").ToString)
-                            ExecuteSQLQuery("update HOTROOMDAYS set IDPEL=" + PEL(K)("ID").ToString + " WHERE DATECHECKIN>='" + Format(DCIND, "MM/dd/yyyy") + "' AND DATECHECKIN<'" + Format(DCOUTD, "MM/dd/yyyy") + "' AND IDROOM=" + HTR(L)("IDROOM").ToString)
-                            OK = 1
-                            Exit For
+                        ' πρέπει οι  αγορασμένες νύχτες να ξεπερνουν το άθροισμα ( κατειλημένων ηδη ημερών + ημέρες του νέου προσκεκλημένου)
+                        If HTR(L)("MAXNIGHTS") > KATEIL_nyxtes(0)(0) + hmeres Then
+
+                            ExecuteSQLQuery("select count(*) from HOTROOMDAYS WHERE DATECHECKIN>='" + Format(DCIND, "MM/dd/yyyy") + "' AND DATECHECKIN<'" + Format(DCOUTD, "MM/dd/yyyy") + "' AND IDROOM=" + HTR(L)("IDROOM").ToString + " AND IDPEL=0", HRDAYS)
+                            If HRDAYS(0)(0) = hmeres Then  ' εχει διαθεσιμες ολες τις ημερες οποτε οκ
+                                ExecuteSQLQuery("UPDATE PEL SET CH2='" + HTR.Rows(0)("NAME") + "',CH1=" + HTR.Rows(0)("ROOMN") + ",HOTELID=" + HTR.Rows(0)("HOTELID").ToString + " WHERE ID=" + PEL(K)("ID").ToString)
+                                ExecuteSQLQuery("update HOTROOMDAYS set IDPEL=" + PEL(K)("ID").ToString + " WHERE DATECHECKIN>='" + Format(DCIND, "MM/dd/yyyy") + "' AND DATECHECKIN<'" + Format(DCOUTD, "MM/dd/yyyy") + "' AND IDROOM=" + HTR(L)("IDROOM").ToString)
+                                OK = 1
+                                Exit For
+                            End If
+
                         End If
+
                     Catch ex As Exception
 
                     End Try
@@ -285,7 +294,7 @@ Public Class test
         Dim R, C As Integer
         R = e.RowIndex
         C = e.ColumnIndex
-        If R < 1 Or C < 1 Then Exit Sub
+        If R < 0 Or C < 1 Then Exit Sub
 
 
 
@@ -371,7 +380,7 @@ Public Class test
             'ΒΡΙΣΚΩ ΤΟ ΑΡΙΣΤΕΡΟ ΚΟΥΤΑΚΙ ΑΠΟ ΑΥΤΟ ΠΟΥ ΕΚΑΝΑ ΚΛΙΚ ΜΗΝ ΤΥΧΟΝ ΑΝΗΚΕΙ ΣΤΟΝ ΙΔΙΟ ΠΕΛΑΤΗ
             d = DGV.Rows(R).Cells(C - 1).Value()
             If d = Nothing Then
-              '  Exit Sub
+                '  Exit Sub
             End If
 
 
@@ -407,7 +416,7 @@ Public Class test
         Dim d As String
         For K As Integer = f1_col To DGV.Columns.Count - 1
             d = DGV.Rows(f1_row).Cells(K).Value()
-          
+
             If DGV.Rows(f1_row).Cells(K).Value() = Nothing Then
                 GRIDfind_right_days = K - f1_col
                 Exit For
@@ -489,7 +498,7 @@ Public Class test
             For n = f2_col To f2_col + F_REM_DAYS - 1
                 Dim DPALIO As String = DGV.Rows(f2_row).Cells(n).Value.ToString
                 DGV.Rows(f2_row).Cells(n).Value = DGV.Rows(f1_row).Cells(nc1).Value
-                DGV.Rows(f1_row).Cells(n).Style.BackColor = Color.Green
+                DGV.Rows(f1_row).Cells(n).Style.BackColor = Color.LightGreen
                 Dim d As String = DGV.Rows(f1_row).Cells(nc1).Value()
                 Dim s As String = ""
                 s = DPALIO.Split("_")(1)
@@ -729,7 +738,7 @@ Public Class test
     End Sub
 
     Private Sub ΕξοδοςToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ΕξοδοςToolStripMenuItem.Click
-        DGV.Rows(f1_row).Cells(f1_col).Style.BackColor = Color.Green
+        DGV.Rows(f1_row).Cells(f1_col).Style.BackColor = Color.LightGreen
         F_REM_DAYS = 0
     End Sub
 End Class
