@@ -436,15 +436,66 @@ Public Class test
 
     Private Sub DGV_CellMouseUp(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DGV.CellMouseUp
         ''-----------------  MENU ------------------------------------------------------
-        'If e.Button = MouseButtons.Right Then
-        '    Dim currentCell As DataGridViewCell = DGV.CurrentCell
+        If e.Button = MouseButtons.Right Then
+            F_REM_DAYS = 0
 
-        '    Dim cellDisplayRect As Rectangle = DGV.GetCellDisplayRectangle(currentCell.ColumnIndex, currentCell.RowIndex, False)
 
-        '    Dim cellAbsolutePos As Point = DGV.PointToScreen(cellDisplayRect.Location)
-        '    Dim X, Y As Long : X = cellAbsolutePos.X : Y = cellAbsolutePos.Y
-        '    ContextMenuStrip1.Show(DGV, New Point(IIf(X - 200 > 0, X - 200, 0), IIf(Y - 300 > 0, Y - 300, 0))) ' Button1.Height))
-        'End If
+
+            Dim currentCell As DataGridViewCell = DGV.CurrentCell
+            If InStr(currentCell.Value.ToString, "_") = 0 Then
+                Exit Sub
+            End If
+            Dim ID As String = currentCell.Value.ToString.Split("_")(1)
+
+                Dim HT2 As New DataTable
+                ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + ID, HT2)
+                Dim nextID As String = (Val(ID) + 1).ToString
+                Dim HOTELID As Long = HT2(0)("HOTELID")
+                Dim IDPEL As Long = HT2(0)("IDPEL")
+
+
+                Dim HT3 As New DataTable
+                ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + nextID, HT3)
+
+
+                If HOTELID = HT3(0)("HOTELID") Then
+                    'OK
+                Else
+                    MsgBox("ΑΛΛΑΓΗ ΞΕΝΟΔΟΧΕΙΟΥ.ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                    Exit Sub
+                End If
+
+                If HT2(0)("ROOMN") = HT3(0)("ROOMN") Then
+                    'OK
+                Else
+                    MsgBox("ΑΛΛΑΓΗ ΔΩMATIOY.ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                    Exit Sub
+                End If
+
+
+                If HT3(0)("IDPEL") = 0 Then
+                    'OK
+                Else
+                    MsgBox("ΕΠΟΜΕΝΗ ΗΜΕΡΑ ΚΑΤΕΙΛΗΜΕΝΗ. ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                    Exit Sub
+                End If
+
+                Dim ans As Integer = MsgBox("Να προστεθεί μία διανυκτέρευση;", vbYesNo)
+                If ans = vbYes Then
+                    Dim HT4 As New DataTable
+                    ExecuteSQLQuery("UPDATE HOTROOMDAYS SET IDPEL=" + IDPEL.ToString + "  WHERE ID=" + nextID.ToString, HT4)
+                    ExecuteSQLQuery("UPDATE PEL SET CHECKOUT=DATEADD(day,1,CHECKOUT)      WHERE ID=" + IDPEL.ToString)
+
+                    paint_grid()
+                End If
+
+
+                '    Dim cellDisplayRect As Rectangle = DGV.GetCellDisplayRectangle(currentCell.ColumnIndex, currentCell.RowIndex, False)
+
+                '    Dim cellAbsolutePos As Point = DGV.PointToScreen(cellDisplayRect.Location)
+                '    Dim X, Y As Long : X = cellAbsolutePos.X : Y = cellAbsolutePos.Y
+                '    ContextMenuStrip1.Show(DGV, New Point(IIf(X - 200 > 0, X - 200, 0), IIf(Y - 300 > 0, Y - 300, 0))) ' Button1.Height))
+            End If
 
     End Sub
 
