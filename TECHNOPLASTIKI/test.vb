@@ -96,7 +96,7 @@ Public Class test
         Next
 
 
-        ExecuteSQLQuery("select HOTELNAME,ROOMN,DATECHECKIN,ISNULL(IDPEL,0) AS IDPEL,ISNULL((SELECT EPO FROM PEL WHERE ID=IDPEL),'-') AS EPO ,ID from HOTROOMDAYS  ORDER BY HOTELNAME,ROOMN ", HTR)
+        ExecuteSQLQuery("select HOTELNAME,ROOMN,DATECHECKIN,ISNULL(IDPEL,0) AS IDPEL,ISNULL((SELECT EPO+'+'+ISNULL(SYNODOS,'') FROM PEL WHERE ID=IDPEL),'-') AS EPO ,ID from HOTROOMDAYS  ORDER BY HOTELNAME,ROOMN ", HTR)
         Dim X As String, R As String
         For K As Integer = 0 To HTR.Rows.Count - 1
             'ΠΡΟΣΔΙΟΡΙΖΩ ΤΗΝ ΣΕΙΡΑ
@@ -290,7 +290,6 @@ Public Class test
 
 
 
-
         Dim R, C As Integer
         R = e.RowIndex
         C = e.ColumnIndex
@@ -447,55 +446,99 @@ Public Class test
             End If
             Dim ID As String = currentCell.Value.ToString.Split("_")(1)
 
-                Dim HT2 As New DataTable
-                ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + ID, HT2)
-                Dim nextID As String = (Val(ID) + 1).ToString
-                Dim HOTELID As Long = HT2(0)("HOTELID")
-                Dim IDPEL As Long = HT2(0)("IDPEL")
+            Dim HT2 As New DataTable
+            ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + ID, HT2)
+            Dim nextID As String = (Val(ID) + 1).ToString
+            Dim HOTELID As Long = HT2(0)("HOTELID")
+            Dim IDPEL As Long = HT2(0)("IDPEL")
+            Dim datecheckin As Date = HT2(0)("DATECHECKIN")
+
+            Dim CHE As String = datecheckin.ToString
 
 
-                Dim HT3 As New DataTable
-                ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + nextID, HT3)
+            Dim HT3 As New DataTable
+            ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + nextID, HT3)
 
 
-                If HOTELID = HT3(0)("HOTELID") Then
-                    'OK
-                Else
-                    MsgBox("ΑΛΛΑΓΗ ΞΕΝΟΔΟΧΕΙΟΥ.ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
-                    Exit Sub
-                End If
+            If HOTELID = HT3(0)("HOTELID") Then
+                'OK
+            Else
+                MsgBox("ΑΛΛΑΓΗ ΞΕΝΟΔΟΧΕΙΟΥ.ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                Exit Sub
+            End If
 
-                If HT2(0)("ROOMN") = HT3(0)("ROOMN") Then
-                    'OK
-                Else
-                    MsgBox("ΑΛΛΑΓΗ ΔΩMATIOY.ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
-                    Exit Sub
-                End If
+            If HT2(0)("ROOMN") = HT3(0)("ROOMN") Then
+                'OK
+            Else
+                MsgBox("ΑΛΛΑΓΗ ΔΩMATIOY.ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                Exit Sub
+            End If
+
+            ' Η ΕΠΟΜΕΝΗ ΜΕΡΑ ΣΤΟ ΙΔΙΟ ΔΩΜΑΤΙΟ ΕΙΝΑΙ ΚΕΝΗ
+            If HT3(0)("IDPEL") = 0 Then
+                'OK
+            Else
+                'ΕΛΕΓΧΩ ΜΗΠΩΣ ΘΕΛΕΙ ΝΑ ΠΡΟΣΘΕΣΩ ΠΡΙΝ ΤΗΝ 1Η ΗΜΕΡΑ
+                Dim HTPREV As New DataTable
+                ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + (Val(ID) - 1).ToString, HTPREV)
+                If HTPREV(0)("IDPEL") = 0 Then  ' ΑΡΙΣΤΕΡΑ ΕΧΕΙ ΚΕΝΟ ΠΟΥ ΕΙΝΑΙ ΑΔΕΙΟ
+                    Dim ans2 As Integer = MsgBox("Να προστεθεί μία διανυκτέρευση;", vbYesNo)
+                    If ans2 = vbYes Then
+                        ' ΕΛΕΓΧΩ ΑΝ Η ΠΡΩΤΗ ΜΕΡΑ ΤΟΥ HOTROOMDAYS EINAI IDIA ME TO CHECKIN TOY ΠΡΟΣΚΕΚΛΗΜΕΝΟΥ
+                        ' ΜΗΝ ΤΥΧΟΝ ΔΗΛΑΔΗ ΕΧΕΙ ΣΠΑΣΙΜΟ ΣΕ 2 ΞΕΝΟΔΟΧΕΙΑ
+                        ' ΚΑΙ ΠΑΩ ΣΤΟ 2ο ΣΠΑΣΙΜΟ ΚΑΙ ΠΡΟΣΘΕΣΩ ΜΙΑ ΜΕΡΑ ΑΡΙΣΤΕΡΑ 
+                        ' ΜΕ ΑΠΟΤΕΛΕΣΜΑ Η ΙΔΙΑ ΜΕΡΑ ΝΑ ΕΙΝΑΙ 2 ΦΟΡΕΣ ΣΤΟΝ ΠΡΟΣΚΕΚΛΗΜΕΝΟ
+
+                        Dim HT4 As New DataTable
+                        ExecuteSQLQuery("SELECT CHECKIN FROM PEL  WHERE ID=" + IDPEL.ToString, HT4)
+                        If HT4(0)(0).DAY = datecheckin.Day Then
+
+                            ExecuteSQLQuery("UPDATE HOTROOMDAYS SET IDPEL=" + IDPEL.ToString + "  WHERE ID=" + (Val(ID) - 1).ToString, HT4)
+                            ExecuteSQLQuery("UPDATE PEL SET CHECKIN=DATEADD(day,-1,CHECKIN)      WHERE ID=" + IDPEL.ToString)
+
+                            paint_grid()
+                            Exit Sub
+                        Else
+                            MsgBox("EXEI ΔΙΑΜΟΝΗ ΣΕ 2 ΞΕΝΟΔΟΧΕΙΑ/ΔΩΜΑΤΙΑ. ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                            Exit Sub
+                        End If
+
+                    Else
+                        'MsgBox("ΕΠΟΜΕΝΗ ΗΜΕΡΑ ΚΑΤΕΙΛΗΜΕΝΗ. ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                        Exit Sub
+
+                    End If
 
 
-                If HT3(0)("IDPEL") = 0 Then
-                    'OK
-                Else
-                    MsgBox("ΕΠΟΜΕΝΗ ΗΜΕΡΑ ΚΑΤΕΙΛΗΜΕΝΗ. ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
-                    Exit Sub
-                End If
+                End If  'If HTPREV(0)("IDPEL") = 0 Then  ' ΑΡΙΣΤΕΡΑ ΕΧΕΙ ΚΕΝΟ ΠΟΥ ΕΙΝΑΙ ΑΔΕΙΟ
+            End If ' HT3(0)("IDPEL") = 0 Then
 
-                Dim ans As Integer = MsgBox("Να προστεθεί μία διανυκτέρευση;", vbYesNo)
-                If ans = vbYes Then
-                    Dim HT4 As New DataTable
+            Dim ans As Integer = MsgBox("Να προστεθεί μία διανυκτέρευση;", vbYesNo)
+            If ans = vbYes Then
+                Dim HT4 As New DataTable
+                ExecuteSQLQuery("SELECT CHECKOUT FROM PEL  WHERE ID=" + IDPEL.ToString, HT4)
+                Dim CCHE As String = HT4(0)(0).ToString
+
+                If HT4(0)(0).DAY = datecheckin.Day + 1 Then
                     ExecuteSQLQuery("UPDATE HOTROOMDAYS SET IDPEL=" + IDPEL.ToString + "  WHERE ID=" + nextID.ToString, HT4)
                     ExecuteSQLQuery("UPDATE PEL SET CHECKOUT=DATEADD(day,1,CHECKOUT)      WHERE ID=" + IDPEL.ToString)
-
                     paint_grid()
+                Else
+                    MsgBox("EXEI ΔΙΑΜΟΝΗ ΣΕ 2 ΞΕΝΟΔΟΧΕΙΑ/ΔΩΜΑΤΙΑ. ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ Η ΠΡΟΣΘΕΣΗ ΔΙΑΝΥΚΤΕΡΕΥΣΗΣ")
+                    Exit Sub
                 End If
 
-
-                '    Dim cellDisplayRect As Rectangle = DGV.GetCellDisplayRectangle(currentCell.ColumnIndex, currentCell.RowIndex, False)
-
-                '    Dim cellAbsolutePos As Point = DGV.PointToScreen(cellDisplayRect.Location)
-                '    Dim X, Y As Long : X = cellAbsolutePos.X : Y = cellAbsolutePos.Y
-                '    ContextMenuStrip1.Show(DGV, New Point(IIf(X - 200 > 0, X - 200, 0), IIf(Y - 300 > 0, Y - 300, 0))) ' Button1.Height))
             End If
+
+
+            '    Dim cellDisplayRect As Rectangle = DGV.GetCellDisplayRectangle(currentCell.ColumnIndex, currentCell.RowIndex, False)
+
+            '    Dim cellAbsolutePos As Point = DGV.PointToScreen(cellDisplayRect.Location)
+            '    Dim X, Y As Long : X = cellAbsolutePos.X : Y = cellAbsolutePos.Y
+            '    ContextMenuStrip1.Show(DGV, New Point(IIf(X - 200 > 0, X - 200, 0), IIf(Y - 300 > 0, Y - 300, 0))) ' Button1.Height))
+
+        End If  'If e.Button = MouseButtons.Right Then
+
 
     End Sub
 
@@ -791,5 +834,91 @@ Public Class test
     Private Sub ΕξοδοςToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ΕξοδοςToolStripMenuItem.Click
         DGV.Rows(f1_row).Cells(f1_col).Style.BackColor = Color.LightGreen
         F_REM_DAYS = 0
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        FindInGrid(Me.DGV, bres.Text)
+    End Sub
+    Private Function FindInGrid(ByRef dgvGrid As DataGridView, ByVal strFind As String, Optional ByVal bStartAtBeggining As Boolean = False) As Point
+
+        'call it like:
+        '    ' forces a start at the grid cell 0,0
+        'FindInGrid(Me.dgvMyGridView, Me.m_sFind, True)
+
+        '    ' starts one cell beyond the staic member X, if X = last column then increments static member Y and sets X = 0
+        'FindInGrid(Me.dgvMyGridView, Me.m_sFind)
+
+        Dim bFound As Boolean = False
+        Static pResult As Point
+        Static X As Integer
+        Static Y As Integer
+        Dim dgvCell As DataGridViewCell
+        Dim dgvRow As DataGridViewRow = Nothing
+        For Each dgvRow In dgvGrid.SelectedRows()
+            dgvRow.Selected = False
+        Next
+        If bStartAtBeggining Then
+            pResult.X = 0
+            pResult.Y = 0
+        Else
+            If pResult.X < dgvGrid.Columns.Count - 1 Then
+                pResult.X += 1
+            Else
+                pResult.X = 0
+                If pResult.Y < dgvGrid.Rows.Count - 1 Then
+                    pResult.Y += 1
+                Else
+                    pResult.Y = 0
+                End If
+            End If
+        End If
+        For Y = pResult.Y To dgvGrid.Rows.Count - 1
+            For X = pResult.X To dgvGrid.Columns.Count - 1
+                dgvCell = dgvGrid(X, Y)
+                If Not IsDBNull(dgvCell.Value) Then
+                    If Not dgvCell.Value = Nothing Then
+                        If dgvCell.Value.ToString.ToLower.Contains(strFind.ToLower) Then
+                            If Not dgvCell.Value = Nothing Then
+                                pResult.X = X
+                                pResult.Y = Y
+                                bFound = True
+                                Exit For
+                            End If
+                        End If
+                    End If
+                End If
+
+
+            Next
+            If bFound Then
+                Exit For
+            Else
+                pResult.X = 0
+            End If
+            If Y = dgvGrid.Rows.Count - 1 Then
+                pResult.Y = 0
+                If dgvGrid.CurrentCell.Value.ToString.ToLower.Contains(strFind.ToLower) Then
+                    MessageBox.Show("δεν υπάρχει αλλο " & strFind & " για εύρεση.",
+                    "Grid Search...", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                Else
+                    MessageBox.Show("'" & strFind & "' δεν βρέθηκε ",
+                    "Grid Search...", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                End If
+            End If
+        Next
+        If bFound Then
+            Try
+                dgvGrid.Item(pResult.X, pResult.Y).Selected = True
+                dgvGrid.CurrentCell = dgvGrid.Item(pResult.X, pResult.Y)
+
+            Catch ex As Exception
+
+            End Try
+
+        End If
+    End Function
+
+    Private Sub DGV_MouseMove(sender As Object, e As MouseEventArgs) Handles DGV.MouseMove
+
     End Sub
 End Class

@@ -22,54 +22,56 @@ Partial Class test
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.DGV = New System.Windows.Forms.DataGridView
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Button3 = New System.Windows.Forms.Button
-        Me.Krarhseis = New System.Windows.Forms.Button
+        Me.components = New System.ComponentModel.Container()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.DGV = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Krarhseis = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ΕξοδοςToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ListBox1 = New System.Windows.Forms.ListBox
-        Me.Button4 = New System.Windows.Forms.Button
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ΕξοδοςToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.bres = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGV, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -80,6 +82,7 @@ Partial Class test
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(12, 627)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersWidth = 45
         Me.DataGridView1.Size = New System.Drawing.Size(498, 141)
         Me.DataGridView1.TabIndex = 0
         '
@@ -111,178 +114,247 @@ Partial Class test
         Me.DGV.GridColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.DGV.Location = New System.Drawing.Point(12, 12)
         Me.DGV.Name = "DGV"
+        Me.DGV.RowHeadersWidth = 45
         Me.DGV.Size = New System.Drawing.Size(1629, 575)
         Me.DGV.TabIndex = 3
         '
         'Column1
         '
         Me.Column1.HeaderText = "Column1"
+        Me.Column1.MinimumWidth = 6
         Me.Column1.Name = "Column1"
+        Me.Column1.Width = 110
         '
         'Column2
         '
         Me.Column2.HeaderText = "Column2"
+        Me.Column2.MinimumWidth = 6
         Me.Column2.Name = "Column2"
+        Me.Column2.Width = 110
         '
         'Column3
         '
         Me.Column3.HeaderText = "Column3"
+        Me.Column3.MinimumWidth = 6
         Me.Column3.Name = "Column3"
+        Me.Column3.Width = 110
         '
         'Column4
         '
         Me.Column4.HeaderText = "Column4"
+        Me.Column4.MinimumWidth = 6
         Me.Column4.Name = "Column4"
+        Me.Column4.Width = 110
         '
         'Column5
         '
         Me.Column5.HeaderText = "Column5"
+        Me.Column5.MinimumWidth = 6
         Me.Column5.Name = "Column5"
+        Me.Column5.Width = 110
         '
         'Column6
         '
         Me.Column6.HeaderText = "Column6"
+        Me.Column6.MinimumWidth = 6
         Me.Column6.Name = "Column6"
+        Me.Column6.Width = 110
         '
         'Column7
         '
         Me.Column7.HeaderText = "Column7"
+        Me.Column7.MinimumWidth = 6
         Me.Column7.Name = "Column7"
+        Me.Column7.Width = 110
         '
         'Column8
         '
         Me.Column8.HeaderText = "Column8"
+        Me.Column8.MinimumWidth = 6
         Me.Column8.Name = "Column8"
+        Me.Column8.Width = 110
         '
         'Column9
         '
         Me.Column9.HeaderText = "Column9"
+        Me.Column9.MinimumWidth = 6
         Me.Column9.Name = "Column9"
+        Me.Column9.Width = 110
         '
         'Column10
         '
         Me.Column10.HeaderText = "Column10"
+        Me.Column10.MinimumWidth = 6
         Me.Column10.Name = "Column10"
+        Me.Column10.Width = 110
         '
         'Column11
         '
         Me.Column11.HeaderText = "Column11"
+        Me.Column11.MinimumWidth = 6
         Me.Column11.Name = "Column11"
+        Me.Column11.Width = 110
         '
         'Column12
         '
         Me.Column12.HeaderText = "Column12"
+        Me.Column12.MinimumWidth = 6
         Me.Column12.Name = "Column12"
+        Me.Column12.Width = 110
         '
         'Column13
         '
         Me.Column13.HeaderText = "Column13"
+        Me.Column13.MinimumWidth = 6
         Me.Column13.Name = "Column13"
+        Me.Column13.Width = 110
         '
         'Column14
         '
         Me.Column14.HeaderText = "Column14"
+        Me.Column14.MinimumWidth = 6
         Me.Column14.Name = "Column14"
+        Me.Column14.Width = 110
         '
         'Column15
         '
         Me.Column15.HeaderText = "Column15"
+        Me.Column15.MinimumWidth = 6
         Me.Column15.Name = "Column15"
+        Me.Column15.Width = 110
         '
         'Column16
         '
         Me.Column16.HeaderText = "Column16"
+        Me.Column16.MinimumWidth = 6
         Me.Column16.Name = "Column16"
+        Me.Column16.Width = 110
         '
         'Column17
         '
         Me.Column17.HeaderText = "Column17"
+        Me.Column17.MinimumWidth = 6
         Me.Column17.Name = "Column17"
+        Me.Column17.Width = 110
         '
         'Column18
         '
         Me.Column18.HeaderText = "Column18"
+        Me.Column18.MinimumWidth = 6
         Me.Column18.Name = "Column18"
+        Me.Column18.Width = 110
         '
         'Column19
         '
         Me.Column19.HeaderText = "Column19"
+        Me.Column19.MinimumWidth = 6
         Me.Column19.Name = "Column19"
+        Me.Column19.Width = 110
         '
         'Column20
         '
         Me.Column20.HeaderText = "Column20"
+        Me.Column20.MinimumWidth = 6
         Me.Column20.Name = "Column20"
+        Me.Column20.Width = 110
         '
         'Column21
         '
         Me.Column21.HeaderText = "Column21"
+        Me.Column21.MinimumWidth = 6
         Me.Column21.Name = "Column21"
+        Me.Column21.Width = 110
         '
         'Column22
         '
         Me.Column22.HeaderText = "Column22"
+        Me.Column22.MinimumWidth = 6
         Me.Column22.Name = "Column22"
+        Me.Column22.Width = 110
         '
         'Column23
         '
         Me.Column23.HeaderText = "Column23"
+        Me.Column23.MinimumWidth = 6
         Me.Column23.Name = "Column23"
+        Me.Column23.Width = 110
         '
         'Column24
         '
         Me.Column24.HeaderText = "Column24"
+        Me.Column24.MinimumWidth = 6
         Me.Column24.Name = "Column24"
+        Me.Column24.Width = 110
         '
         'Column25
         '
         Me.Column25.HeaderText = "Column25"
+        Me.Column25.MinimumWidth = 6
         Me.Column25.Name = "Column25"
+        Me.Column25.Width = 110
         '
         'Column26
         '
         Me.Column26.HeaderText = "Column26"
+        Me.Column26.MinimumWidth = 6
         Me.Column26.Name = "Column26"
+        Me.Column26.Width = 110
         '
         'Column27
         '
         Me.Column27.HeaderText = "Column27"
+        Me.Column27.MinimumWidth = 6
         Me.Column27.Name = "Column27"
+        Me.Column27.Width = 110
         '
         'Column28
         '
         Me.Column28.HeaderText = "Column28"
+        Me.Column28.MinimumWidth = 6
         Me.Column28.Name = "Column28"
+        Me.Column28.Width = 110
         '
         'Column29
         '
         Me.Column29.HeaderText = "Column29"
+        Me.Column29.MinimumWidth = 6
         Me.Column29.Name = "Column29"
+        Me.Column29.Width = 110
         '
         'Column30
         '
         Me.Column30.HeaderText = "Column30"
+        Me.Column30.MinimumWidth = 6
         Me.Column30.Name = "Column30"
+        Me.Column30.Width = 110
         '
         'Column31
         '
         Me.Column31.HeaderText = "Column31"
+        Me.Column31.MinimumWidth = 6
         Me.Column31.Name = "Column31"
+        Me.Column31.Width = 110
         '
         'Column32
         '
         Me.Column32.HeaderText = "Column32"
+        Me.Column32.MinimumWidth = 6
         Me.Column32.Name = "Column32"
+        Me.Column32.Width = 110
         '
         'Column33
         '
         Me.Column33.HeaderText = "Column33"
+        Me.Column33.MinimumWidth = 6
         Me.Column33.Name = "Column33"
+        Me.Column33.Width = 110
         '
         'Column34
         '
         Me.Column34.HeaderText = "Column34"
+        Me.Column34.MinimumWidth = 6
         Me.Column34.Name = "Column34"
+        Me.Column34.Width = 110
         '
         'Button3
         '
@@ -304,32 +376,33 @@ Partial Class test
         '
         'ContextMenuStrip1
         '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(18, 18)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem4, Me.ΕξοδοςToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(185, 92)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(193, 92)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(184, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(192, 22)
         Me.ToolStripMenuItem1.Text = "Μετακίνηση"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(184, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(192, 22)
         Me.ToolStripMenuItem2.Text = "Ακύρωση Κράτησης"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(184, 22)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(192, 22)
         Me.ToolStripMenuItem4.Text = "...."
         '
         'ΕξοδοςToolStripMenuItem
         '
         Me.ΕξοδοςToolStripMenuItem.Name = "ΕξοδοςToolStripMenuItem"
-        Me.ΕξοδοςToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.ΕξοδοςToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
         Me.ΕξοδοςToolStripMenuItem.Text = "Εξοδος"
         '
         'ListBox1
@@ -350,11 +423,29 @@ Partial Class test
         Me.Button4.Text = "ΔΙΑΓΡΑΦΗ ΚΡΑΤΗΣΕΩΝ"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'bres
+        '
+        Me.bres.Location = New System.Drawing.Point(876, 605)
+        Me.bres.Name = "bres"
+        Me.bres.Size = New System.Drawing.Size(100, 20)
+        Me.bres.TabIndex = 9
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(876, 633)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(99, 26)
+        Me.Button5.TabIndex = 10
+        Me.Button5.Text = "Αναζήτηση"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1761, 780)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.bres)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Krarhseis)
@@ -370,6 +461,7 @@ Partial Class test
         CType(Me.DGV, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
@@ -419,4 +511,6 @@ Partial Class test
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ΕξοδοςToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents bres As TextBox
+    Friend WithEvents Button5 As Button
 End Class

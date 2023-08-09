@@ -2256,13 +2256,19 @@ Public Class MDIMain
         '' N = dd.Rows(0)(0)
         'MsgBox("Αδιάθετες διανυκτερεύσεις " + Chr(13) + cal)
 
+        Dim ANS As Integer
+        ANS = MsgBox("ΝΑ ΕΝΗΜΕΡΩΘΟΥΝ ΟΙ ΚΑΡΤΕΛΛΕΣ (CΗ2) ΑΠΟ ΤΟ BOOKING?", MsgBoxStyle.YesNo)
+        If ANS = vbYes Then
+            ExecuteSQLQuery("UPDATE PEL SET CH2=''")
+
+
+            ExecuteSQLQuery("UPDATE PEL SET CH2=H.NAME FROM PEL P INNER JOIN HOTROOMDAYS D ON P.ID=D.IDPEL INNER JOIN HOTELS H ON H.ID=D.HOTELID")
+
+        End If
 
 
 
-
-
-
-        Dim QQ As String = "SELECT CHECKIN,CHECKOUT, EPO,(DATEDIFF(DAY,CHECKIN,CHECKOUT) ) AS [ΑΙΤ.ΔΙΑΝ],(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) AS [ΠΡΑΓ.ΔΙΑΝ],ID ,ID AS IDD  FROM PEL WHERE (DATEDIFF(DAY,CHECKIN,CHECKOUT) )<>(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) "
+        Dim QQ As String = "SELECT CHECKIN,CHECKOUT, EPO,(DATEDIFF(DAY,CHECKIN,CHECKOUT) ) AS [ΑΙΤ.ΔΙΑΝ],(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) AS [ΠΡΑΓ.ΔΙΑΝ],CH2 AS [HOTEL] ,ID AS IDD  FROM PEL WHERE (DATEDIFF(DAY,CHECKIN,CHECKOUT) )<>(SELECT COUNT(*) FROM HOTROOMDAYS WHERE IDPEL=PEL.ID) "
 
         Dim frm As New ergates  ' form2 
         Dim Mn1 As String = "1"
