@@ -1,6 +1,8 @@
 ﻿Imports System.Data.OleDb
 Imports System.Data.SqlClient
-
+'Imports Microsoft.Office.Interop
+'Imports Microsoft.Office.Interop.Excel
+Imports Excel = Microsoft.Office.Interop.Excel
 Public Class test
     Dim f1_row As Integer
     Dim f1_col As Integer
@@ -15,27 +17,176 @@ Public Class test
     Dim F_REM_DAYS As String ' ΔΙΑΝΥΚΤΕΡΕΥΣΕΙΣ ΠΟΥ ΑΠΟΜΕΝΟΥΝ ΣΤΟΝ ΠΕΛΑΤΗ ΠΟΥ ΕΚΑΝΑ ΤΟ ΠΡΟΤΟ ΚΛΙΚ
     ' Declare the ContextMenuStrip control.
     Private fruitContextMenuStrip As ContextMenuStrip
+    'Sub COPYALLTOCLIPBOARD()
+
+    '    DataGridView1.SelectAll()
+    '    Dim dataObj As DataObject = DataGridView1.GetClipboardContent()
+    '    If Not IsDBNull(dataObj) Then
+    '        Clipboard.SetDataObject(dataObj)
+    '    End If
+    'End Sub
+
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        DataGridView1.ColumnCount = 3
-        DataGridView1.Columns(0).Name = "Product ID"
-        DataGridView1.Columns(1).Name = "Product Name"
-        DataGridView1.Columns(2).Name = "Product_Price"
 
-        Dim row As String() = New String() {"1", "Product 1", "1000"}
-        DataGridView1.Rows.Add(row)
-        row = New String() {"2", "Product 2", "2000"}
-        DataGridView1.Rows.Add(row)
-        row = New String() {"3", "Product 3", "3000"}
-        DataGridView1.Rows.Add(row)
-        row = New String() {"4", "Product 4", "4000"}
-        DataGridView1.Rows.Add(row)
 
-        Dim btn As New DataGridViewButtonColumn()
-        DataGridView1.Columns.Add(btn)
-        btn.HeaderText = "Click Data"
-        btn.Text = "Click Here"
-        btn.Name = "btn"
-        btn.UseColumnTextForButtonValue = True
+
+
+        ' COPYALLTOCLIPBOARD()
+        'Dim xlexcel As Microsoft.Office.Interop.Excel.Application
+        'Dim xlWorkBook As Microsoft.Office.Interop.Excel.Workbook
+        'Dim xlWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+        'Dim misValue As Object = System.Reflection.Missing.Value
+        'xlexcel = New Excel.Application()
+        'xlexcel.Visible = True
+        'xlWorkBook = xlexcel.Workbooks.Add(misValue)
+        'xlWorkSheet = xlexcel.xlWorkbook.Worksheets(1) '    xlexcel.Workbooks.Worksheets.get_Item(1)
+
+        Dim filename As String = "c:\mercvb\ektyp.xlsx"
+        Dim sheetname As String = "Φύλλο1"
+        Dim xlApp As Excel.Application
+        Dim xlWorkBook As Excel.Workbook
+        Dim xl As Excel.Worksheet
+        xlApp = New Excel.ApplicationClass
+        xlWorkBook = xlApp.Workbooks.Add 'αν ηθελα να το ανοιξω αντι για add -> Open(filename)
+        xlWorkBook.Worksheets.Add()  '(1)
+        xl = xlWorkBook.Worksheets(1) ' .Add
+
+        xl.Range("a1", "z1000").Font.Size = 8
+        xl.Name = "fest"
+        Dim r, c As Integer
+        For c = 0 To DGV.Columns.Count - 1
+            xl.Cells(1, c + 1) = DGV.Columns(c).HeaderCell.Value
+        Next
+
+
+        For r = 0 To DGV.Rows.Count - 1
+            Me.Text = r
+            For c = 0 To DGV.Columns.Count - 1
+                If IsDBNull(DGV.Rows(r).Cells(c).Value) Then
+
+
+                Else
+                    Try
+
+
+                        If DGV.Rows(r).Cells(c).Value <> Nothing Then
+                            If Mid(DGV.Rows(r).Cells(c).Value.ToString, 1, 2) = "_ " Then
+                            Else
+                                xl.Cells(r + 2, c + 1) = DGV.Rows(r).Cells(c).Value 'Columns(nn).HeaderCell.Value
+                                xl.Cells(r + 2, c + 1).Interior.Color = RGB(200, 200, 200)
+                                xl.Cells(r + 2, c + 1).Style.WrapText = True
+
+                            End If
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
+                ' Else
+
+                ' End If
+
+
+            Next
+        Next
+        xlApp.Visible = True  'ΜΠΟΡΩ ΝΑ ΤΟ ΒΛΕΠΩ
+        MsgBox("ok")
+
+        Exit Sub
+
+
+
+        'Dim cr As Excel.Range = xl.Cells(1, 1)
+        'cr.Select()
+        'xl.PasteSpecial(cr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, True)
+
+        'Dim test As Integer
+        'Dim HTR As New DataTable
+        '' ΒΑΖΩ ΕΠΙΚΕΦΑΛΙΔΕΣ
+        'ExecuteSQLQuery("select MAX(DATECHECKIN) AS MAX1,MIN(DATECHECKIN) AS MIN1 from HOTROOMDAYS  ", HTR)
+        'Dim mApo As Date = HTR.Rows(0)("MIN1")
+        'Dim mEos As Date = HTR.Rows(0)("MAX1")
+        'Dim hmeres As Integer = DateDiff("d", mApo, mEos) + 1
+        'Dim hmera As Date = mApo
+
+        'DGV.RowHeadersVisible = False
+        'DGV.Columns(0).HeaderCell.Value = "Ξεν"
+        'DGV.Columns(1).HeaderCell.Value = "Δωμ"
+        'Dim pl As Integer = 80
+        '' ΔΕΙΧΝΩ ΤΙΣ ΜΕΡΕΣ
+        'For nn As Integer = 2 To hmeres + 1
+        '    'DGV.Columns(nn).Width = pl
+        '    ' DGV.Columns(nn).HeaderCell.Value = Format(hmera, "dd/MM")
+        '    xl.Cells(1, nn) = Format(hmera, "dd/MM")
+        '    hmera = DateAdd("d", 1, hmera)
+
+        'Next
+
+
+
+
+        '' DEIXNΩ ΔΩΜΑΤΙΑ & ΞΕΝΟΔΟΧΕΙΑ
+        'ExecuteSQLQuery("select H.NAME,R.ROOMN from HOTROOMS R inner join HOTELS H ON H.ID=R.HOTELID ORDER BY H.NAME,R.ROOMN ", HTR)
+
+        'For K As Integer = 0 To HTR.Rows.Count - 1
+        '    ' DGV.Rows.Add()
+        '    xl.Cells(K + 1, 1) = HTR.Rows(K)("name")
+        '    ' DGV.Rows(K).Cells(0).Value = HTR.Rows(K)("name")
+        '    ' DGV.Rows(K).Cells(1).Value = HTR.Rows(K)("roomn")
+        '    xl.Cells(K + 1, 2) = HTR.Rows(K)("roomn")
+        'Next
+
+
+        ''diastash toy excel   hmeres: sthles
+        'Dim rowsn As Integer = HTR.Rows.Count
+
+
+        'ExecuteSQLQuery("select HOTELNAME,ROOMN,DATECHECKIN,ISNULL(IDPEL,0) AS IDPEL,ISNULL((SELECT EPO+'+'+ISNULL(SYNODOS,'') FROM PEL WHERE ID=IDPEL),'-') AS EPO ,ID from HOTROOMDAYS  ORDER BY HOTELNAME,ROOMN ", HTR)
+        'Dim X As String, R As String
+        'For K As Integer = 0 To HTR.Rows.Count - 1
+        '    'ΠΡΟΣΔΙΟΡΙΖΩ ΤΗΝ ΣΕΙΡΑ
+        '    X = Trim(HTR.Rows(K)("HOTELname"))
+        '    R = Trim(HTR.Rows(K)("ROOMN")) ' ariumos domatioy p.x. 102
+        '    Dim seira As Integer = 0
+        '    For i As Integer = 1 To hmeres 'DGV.Rows.Count - 1
+        '        'αν βρηκα το ξενοδοχείο(Χ) και το δωμάτιο(R) τοτε τσιμπα  την σειρά
+        '        If X = xl.Cells(i, 1).ToString And R = xl.Cells(i, 2).ToString Then '  DGV.Rows(i).Cells(0).Value And R = DGV.Rows(i).Cells(1).Value Then
+        '            seira = i
+        '            Exit For
+        '        End If
+        '    Next
+
+        '    'ΠΡΟΣΔΙΟΡΙΖΩ ΤΗΝ ΣΤΗΛΗ  sygkrinontas to HOTROOMDAYS DATECHECKIN ME TON TITLO THS STHLHS KAI TSIMPAO THN STHLH
+        '    Dim cc As String = Format(HTR.Rows(K)("datecheckin"), "dd/MM")
+        '    Dim sthlh As Integer = 0
+        '    For i = 1 To hmeres ' DGV.Columns.Count - 1
+        '        If cc = xl.Cells(1, i).ToString Then 'DGV.Columns(i).HeaderCell.Value Then
+        '            sthlh = i
+        '            Exit For
+        '        End If
+        '    Next
+        '    If seira > 0 And sthlh > 0 Then
+        '        If HTR.Rows(K)("idpel") > 0 Then
+        '            'DGV.Rows(seira).Cells(sthlh).Value
+        '            xl.Cells(seira, sthlh) = HTR.Rows(K)("EPO") + "_                               " + Str(HTR.Rows(K)("id")) ' HTR.Rows(K)("idpel")
+        '            xl.Cells(sthlh).Style.BackColor = Color.LightGreen
+
+        '        Else
+        '            ' If xl.Cells(seira, sthlh).Style.BackColor = Color.LightGreen Then
+        '            ' test = 1
+        '            ' Else
+        '            xl.Cells(seira, sthlh) = "_ " '+ Str(HTR.Rows(K)("id")) ' HTR.Rows(K)("IDPEL")
+        '            xl.Cells(seira, sthlh).Style.BackColor = Color.Red
+        '            ' End If
+
+        '        End If
+        '    End If
+
+
+        'Next
+
+
 
     End Sub
     Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
@@ -436,6 +587,10 @@ Public Class test
     Private Sub DGV_CellMouseUp(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles DGV.CellMouseUp
         ''-----------------  MENU ------------------------------------------------------
         If e.Button = MouseButtons.Right Then
+            If My.Computer.Keyboard.ShiftKeyDown Then
+                delete_day
+                Exit Sub
+            End If
             F_REM_DAYS = 0
 
 
@@ -541,7 +696,65 @@ Public Class test
 
 
     End Sub
+    Sub Delete_day()
+        '================================
+        Dim currentCell As DataGridViewCell = DGV.CurrentCell
+        If InStr(currentCell.Value.ToString, "_") = 0 Then  'adeio
+            Exit Sub
+        End If
 
+
+
+        Dim ID As String = currentCell.Value.ToString.Split("_")(1)
+
+        Dim HT2 As New DataTable
+        ExecuteSQLQuery("select * from HOTROOMDAYS WHERE ID=" + ID, HT2)
+        Dim nextID As String = (Val(ID) + 1).ToString
+        Dim HOTELID As Long = HT2(0)("HOTELID")
+        Dim IDPEL As Long = HT2(0)("IDPEL")
+        Dim datecheckin As Date = HT2(0)("DATECHECKIN")
+
+        Dim CHE As String = datecheckin.ToString
+        If IDPEL = 0 Then
+            Exit Sub
+
+        End If
+
+
+        Dim ans As Integer = MsgBox("Να αφαιρεθεί μία διανυκτέρευση;", vbYesNo)
+        If ans = vbYes Then
+            Dim HT4 As New DataTable
+            ExecuteSQLQuery("SELECT CHECKOUT,CHECKIN FROM PEL  WHERE ID=" + IDPEL.ToString, HT4)
+            If HT4.Rows.Count = 0 Then
+                Exit Sub
+            End If
+            Dim CCHE As String = HT4(0)(0).ToString
+
+            If HT4(0)("CHECKOUT").DAY - 1 = datecheckin.Day Then
+                ExecuteSQLQuery("UPDATE HOTROOMDAYS SET IDPEL=0  WHERE ID=" + ID.ToString, HT4)
+                ExecuteSQLQuery("UPDATE PEL SET CHECKOUT=DATEADD(day,-1,CHECKOUT)      WHERE ID=" + IDPEL.ToString)
+                paint_grid()
+                Exit Sub
+
+            End If
+            If HT4(0)("CHECKIN").DAY = datecheckin.Day Then
+                ExecuteSQLQuery("UPDATE HOTROOMDAYS SET IDPEL=0  WHERE ID=" + ID.ToString, HT4)
+                ExecuteSQLQuery("UPDATE PEL SET CHECKIN=DATEADD(day,1,CHECKIN)      WHERE ID=" + IDPEL.ToString)
+                paint_grid()
+                Exit Sub
+
+            End If
+
+
+
+            MsgBox("δεν έγινε η αφαίρεση")
+
+
+
+        End If
+
+
+    End Sub
 
     Private Sub Button4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         If UCase(username) = "ADMIN" Then

@@ -88,13 +88,12 @@ Partial Class test
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(537, 730)
+        Me.Button1.Location = New System.Drawing.Point(1115, 605)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(201, 38)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "ΣΕ EXCEL"
         Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
         '
         'Button2
         '
